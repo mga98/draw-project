@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock title %} | Draw-Project</title>
 
-    <link rel="stylesheet" href="{% static 'global_static/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'global/css/styles.css' %}">
 </head>
 <body>
     <header class="main-navigation">
@@ -32,9 +34,6 @@
         </div>
 
     </body>
-
-    {% block content %}
-    {% endblock %}
 
     <footer class="main-navigation footer">
         <nav>
