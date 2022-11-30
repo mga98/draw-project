@@ -2,22 +2,25 @@
     <h2>Trending Posts</h2>
     <div class="trending-list">
 
-        <div class="trending-post">
-            <a href="">
-                <img src="https://source.unsplash.com/random/360x720?r=6" alt="">
-            </a>
-            <footer>
-                <div class="post-info">
-                    <h3><a href="">Post title</a></h3>
-                    <p>Short description of the post and the draw.</p>
-                </div>
+        {% for draw in draws %}
+            <div class="trending-post">
+                <a href="">
+                    <img src="{{ draw.img.url }}" alt="image">
+                </a>
+                <footer>
+                    <div class="post-info">
+                        <h3><a href="">{{ draw.title }}</a></h3>
+                        <p>{{ draw.description }}</p>
+                    </div>
 
-                <div class="user-info">
-                    <a href="">Username</a>
-                    <p>Created at 09/10/1998</p>
-                </div>
-            </footer>
-        </div>
+                    <div class="user-info">
+                        <a href="">{{ draw.author.username }}</a>
+                        <p>Created at 09/10/1998</p>
+                    </div>
+                </footer>
+            </div>
+        {% endfor %}
+
     </div>
 </div>
 
