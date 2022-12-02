@@ -4,6 +4,7 @@
 
         {% for draw in draws %}
             <div class="trending-post">
+                
                 {% if draw.img %}
                     <a href="">
                             <img src="{{ draw.img.url }}" alt="image">
@@ -12,6 +13,10 @@
                 <footer>
                     <div class="post-info">
                         <h3><a href="">{{ draw.title }}</a></h3>
+                        <p>{{ draw.like_count }} Likes</p>
+                        <button class="like-button" id="like-button" action="{{ draw.id }}">
+                            <i class="fa fa-light fa-heart fa-2x"></i>
+                        </button>
                         <p>{{ draw.description }}</p>
                     </div>
 
@@ -33,24 +38,26 @@
     <div class="trending-list">
 
         {% for draw in draws %}
-        <div class="trending-post">
-            {% if draw.img %}
-                <a href="">
-                        <img src="{{ draw.img.url }}" alt="image">
-                </a>
-            {% endif %}
-            <footer>
-                <div class="post-info">
-                    <h3><a href="">{{ draw.title }}</a></h3>
-                    <p>{{ draw.description }}</p>
-                </div>
+            <div class="trending-post">
+                
+                {% if draw.img %}
+                    <a href="">
+                            <img src="{{ draw.img.url }}" alt="image">
+                    </a>
+                {% endif %}
+                <footer>
+                    <div class="post-info">
+                        <h3><a href="">{{ draw.title }}</a></h3>
+                        <a href=""><i class="fa fa-light fa-heart fa-lg"></i></a>
+                        <p>{{ draw.description }}</p>
+                    </div>
 
-                <div class="user-info">
-                    <a href="">{{ draw.author.username }}</a>
-                    <p>{{ draw.created_at|date:"M d, Y" }}</p>
-                </div>
-            </footer>
-        </div>
+                    <div class="user-info">
+                        <a href="">{{ draw.author.username }}</a>
+                        <p>{{ draw.created_at|date:"M d, Y" }}</p>
+                    </div>
+                </footer>
+            </div>
         {% empty %}
             <p>Nenhum desenho recente.</p>
         {% endfor %}

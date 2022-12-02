@@ -16,6 +16,10 @@ class Draw(models.Model):
         'Desenho', upload_to='draws/cover/%Y/%m/%d/', blank=True, default=''
     )
     is_published = models.BooleanField('Publicado', default=False)
+    like = models.ManyToManyField(
+        User, related_name='like', default=None, blank=True
+    )
+    like_count = models.BigIntegerField(default='0')
 
     def __str__(self):
         return self.title

@@ -186,6 +186,26 @@ header {
     transition: all 300ms ease-in-out;
 }
 
+.like-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background-color: none;
+    cursor: pointer;
+    background-color: inherit;
+    border: none;
+}
+
+.trending-post i {
+    color: var(--color-gray-2);
+    transition: all 300ms ease-in-out;
+}
+
+.trending-post i:hover {
+    transform: scale(1.1);
+    color: var(--color-tertiary);
+}
+
 .trending-post:hover {
     transform: scale(1.02);
 }
@@ -202,7 +222,7 @@ header {
     bottom: 0;
     left: 0;
     width: 100%;
-    color: white;
+    color: var(--color-gray-0);
     background-color: rgba(0, 0, 0, 0.805);
     padding: 1rem;
     font-size: 1.5rem;
