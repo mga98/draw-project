@@ -1,5 +1,5 @@
 :root {
-    --color-primary: #f59d45;
+    --color-primary: #bdd6fc;
     --color-secondary: #0d1c33;
     --color-tertiary: #cf3c0b;
     --color-primary-dark-hover: #161b33;
@@ -177,7 +177,8 @@ header {
 .trending-post {
     position: relative;
     height: 100%;
-    width: 30rem;
+    min-width: 30rem;
+    max-width: 30rem;
     border-radius: 1.1rem 1.1rem 0 0;
     background-color: var(--color-tertiary);
     margin: 0 2rem;

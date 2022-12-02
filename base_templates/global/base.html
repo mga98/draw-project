@@ -1,26 +1,13 @@
-<!DOCTYPE html>
 {% load static %}
-
+<!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock title %} | Draw-Project</title>
 
-    <link rel="stylesheet" href="{% static 'global/css/styles.css' %}">
+<head>
+    {% include './partials/_head.html' %}
+    <title>{% block title %}{% endblock title %} | Draw-Project</title>
 </head>
 <body>
-    <header class="main-navigation">
-        <nav>
-            <h1><a class="site-title" href="">TITLE</a></h1>
-            <input type="search" placeholder="Search here">
-            <ul>
-                <li><a href="">Login</a></li>
-                <li><a href="">Register</a></li>
-            </ul>
-        </nav>
-    </header>
+    {% include './partials/_header.html' %}
 
     <body>
 
@@ -35,11 +22,6 @@
 
     </body>
 
-    <footer class="main-navigation footer">
-        <nav>
-            <p>Powered By Django</p>
-            <a href="">By Miguel Almeida</a>
-        </nav>
-    </footer>
+    {% include './partials/_footer.html' %}
 </body>
 </html>

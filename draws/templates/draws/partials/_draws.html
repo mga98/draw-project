@@ -47,7 +47,7 @@
 
                 <div class="user-info">
                     <a href="">{{ draw.author.username }}</a>
-                    <p>{{ draw.created_at }}</p>
+                    <p>{{ draw.created_at|date:"M d, Y" }}</p>
                 </div>
             </footer>
         </div>
