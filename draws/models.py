@@ -13,7 +13,7 @@ class Draw(models.Model):
         User, verbose_name='Usuário', on_delete=models.SET_NULL, null=True
     )
     img = models.ImageField(
-        'Desenho', upload_to='draws/cover/%Y/%m/%d/', blank=True, default=None
+        'Desenho', upload_to='draws/cover/%Y/%m/%d/', blank=True, default=''
     )
     is_published = models.BooleanField('Publicado', default=False)
 

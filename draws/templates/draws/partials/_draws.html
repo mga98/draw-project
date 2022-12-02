@@ -4,9 +4,11 @@
 
         {% for draw in draws %}
             <div class="trending-post">
-                <a href="">
-                    <img src="{{ draw.img.url }}" alt="image">
-                </a>
+                {% if draw.img %}
+                    <a href="">
+                            <img src="{{ draw.img.url }}" alt="image">
+                    </a>
+                {% endif %}
                 <footer>
                     <div class="post-info">
                         <h3><a href="">{{ draw.title }}</a></h3>
@@ -15,10 +17,12 @@
 
                     <div class="user-info">
                         <a href="">{{ draw.author.username }}</a>
-                        <p>Created at 09/10/1998</p>
+                        <p>{{ draw.created_at|date:"M d, Y" }}</p>
                     </div>
                 </footer>
             </div>
+        {% empty %}
+            <p>Nenhum desenho em trendings.</p>
         {% endfor %}
 
     </div>
@@ -28,22 +32,28 @@
     <h2>Recent Posts</h2>
     <div class="trending-list">
 
+        {% for draw in draws %}
         <div class="trending-post">
-            <a href="">
-                <img src="https://source.unsplash.com/random/360x720?r=10" alt="">
-            </a>
+            {% if draw.img %}
+                <a href="">
+                        <img src="{{ draw.img.url }}" alt="image">
+                </a>
+            {% endif %}
             <footer>
                 <div class="post-info">
-                    <h3><a href="">Post title</a></h3>
-                    <p>Short description of the post and the draw.</p>
+                    <h3><a href="">{{ draw.title }}</a></h3>
+                    <p>{{ draw.description }}</p>
                 </div>
 
                 <div class="user-info">
-                    <a href="">Username</a>
-                    <p>Created at 09/10/1998</p>
+                    <a href="">{{ draw.author.username }}</a>
+                    <p>{{ draw.created_at }}</p>
                 </div>
             </footer>
         </div>
+        {% empty %}
+            <p>Nenhum desenho recente.</p>
+        {% endfor %}
 
     </div>
 </div>
