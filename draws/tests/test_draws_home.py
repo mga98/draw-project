@@ -1,7 +1,6 @@
 from django.urls import resolve, reverse
 
 from draws import views
-
 from .test_draw_base import DrawTestBase
 
 
