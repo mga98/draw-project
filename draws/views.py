@@ -28,6 +28,8 @@ def all_draws(request):
         is_published=True,
     ).order_by('-id')
 
+    # Add pagination logic here.
+
     return render(request, 'draws/pages/all_draws.html', context={
         'draws': draws
     })
