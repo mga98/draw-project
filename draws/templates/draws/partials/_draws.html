@@ -6,18 +6,18 @@
             <div class="trending-post">
                 
                 {% if draw.img %}
-                    <a href="">
+                    <a href="{% url 'draws:draw_view' draw.id %}">
                             <img src="{{ draw.img.url }}" alt="image">
                     </a>
                 {% endif %}
                 <footer>
                     <div class="post-info">
-                        <h3><a href="">{{ draw.title }}</a></h3>
+                        <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
                         <p>{{ draw.like_count }} Likes</p>
                         <button class="like-button" id="like-button" action="{{ draw.id }}">
                             <i class="fa fa-light fa-heart fa-2x"></i>
                         </button>
-                        <p>{{ draw.description }}</p>
+                        <p class="post-description">{{ draw.description }}</p>
                     </div>
 
                     <div class="user-info">
@@ -38,26 +38,29 @@
     <div class="trending-list">
 
         {% for draw in draws %}
-            <div class="trending-post">
+        <div class="trending-post">
                 
-                {% if draw.img %}
-                    <a href="">
-                            <img src="{{ draw.img.url }}" alt="image">
-                    </a>
-                {% endif %}
-                <footer>
-                    <div class="post-info">
-                        <h3><a href="">{{ draw.title }}</a></h3>
-                        <a href=""><i class="fa fa-light fa-heart fa-lg"></i></a>
-                        <p>{{ draw.description }}</p>
-                    </div>
+            {% if draw.img %}
+                <a href="{% url 'draws:draw_view' draw.id %}">
+                        <img src="{{ draw.img.url }}" alt="image">
+                </a>
+            {% endif %}
+            <footer>
+                <div class="post-info">
+                    <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
+                    <p>{{ draw.like_count }} Likes</p>
+                    <button class="like-button" id="like-button" action="{{ draw.id }}">
+                        <i class="fa fa-light fa-heart fa-2x"></i>
+                    </button>
+                    <p class="post-description">{{ draw.description }}</p>
+                </div>
 
-                    <div class="user-info">
-                        <a href="">{{ draw.author.username }}</a>
-                        <p>{{ draw.created_at|date:"M d, Y" }}</p>
-                    </div>
-                </footer>
-            </div>
+                <div class="user-info">
+                    <a href="">{{ draw.author.username }}</a>
+                    <p>{{ draw.created_at|date:"M d, Y" }}</p>
+                </div>
+            </footer>
+        </div>
         {% empty %}
             <p>Nenhum desenho recente.</p>
         {% endfor %}

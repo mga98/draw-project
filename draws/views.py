@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 from .models import Draw
 
@@ -13,5 +13,9 @@ def home(request):
     })
 
 
-def draw(request):
-    ...
+def draw(request, pk):
+    draw = get_object_or_404(Draw, id=pk, is_published=True)
+
+    return render(request, 'draws/pages/draw_view.html', context={
+        'draw': draw
+    })

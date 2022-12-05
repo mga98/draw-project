@@ -1,0 +1,39 @@
+<div class="draw-view">
+
+    <div class="draw-head">
+        <h2 class="draw-title">{{ draw.title }}</h2>
+        <p class="draw-description">{{ draw.description }}</p>
+    </div>
+
+    <div class="draw-body">
+        {% if draw.img %}
+            <div class="draw-img">
+                <img src="{{ draw.img.url }}" alt="draw-img">
+            </div>
+        {% endif %}
+
+        <div class="draw-info">
+            <div class="like-area">
+                <button class="like-button" id="like-button" action="{{ draw.id }}">
+                    <i class="fa fa-light fa-heart fa-2x"></i>
+                </button>
+                <p>1561 Likes</p>
+            </div>
+            <p>Draw by: <a href="">{{ draw.author.username }}</a></p>
+        </div>
+
+        <div class="draw-about">
+            <h3>Draw's about</h3>
+            <p>{{ draw.about }}</p>
+        </div>
+
+        <div class="creation-details">
+            <p>Criado em: {{ draw.created_at|date:"M d, Y" }}</p>
+            <p>Atualizado em: {{ draw.updated_at|date:"M d, Y" }}</p>
+        </div>
+
+    </div>
+
+    
+
+</div>
