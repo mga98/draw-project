@@ -6,5 +6,6 @@ app_name = 'draws'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('draw/<int:pk>/', views.draw, name='draw_view'),
+    path('draws/<int:pk>/', views.draw, name='draw_view'),
+    path('draws/all/', views.all_draws, name='all_draws')
 ]

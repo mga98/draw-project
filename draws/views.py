@@ -8,6 +8,8 @@ def home(request):
         is_published=True,
     ).order_by('-id')
 
+    # Add a trending logic here.
+
     return render(request, 'draws/pages/home.html', context={
         'draws': draws
     })
@@ -18,4 +20,14 @@ def draw(request, pk):
 
     return render(request, 'draws/pages/draw_view.html', context={
         'draw': draw
+    })
+
+
+def all_draws(request):
+    draws = Draw.objects.filter(
+        is_published=True,
+    ).order_by('-id')
+
+    return render(request, 'draws/pages/all_draws.html', context={
+        'draws': draws
     })

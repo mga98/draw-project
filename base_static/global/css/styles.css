@@ -83,7 +83,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem;
+    padding: 2rem 1rem;
 }
 
 .main-navigation nav a {
@@ -126,6 +126,7 @@ header {
     max-width: 140rem;
     justify-content: center;
     margin: var(--spacing-gutter-medium) auto;
+    padding: 0 1rem;
 }
 
 .main-content {
@@ -136,7 +137,7 @@ header {
 
 .trending-area {
     width: 100%;
-    padding: 2rem;
+    padding: 2rem 0;
 }
 
 .trending-area h2 {
@@ -181,6 +182,16 @@ header {
     margin: 0 2rem;
     box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-8);
     transition: all 300ms ease-in-out;
+}
+
+.recent-posts {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recent-posts a {
+    color: var(--color-tertiary);
 }
 
 .like-button {
@@ -312,7 +323,7 @@ header {
 .draw-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .draw-info {
@@ -355,4 +366,111 @@ header {
     width: 100%;
     justify-content: space-between;
     align-items: center;
+}
+
+/* All draws */
+
+.all-content {
+    padding: 2rem 0;
+}
+
+.all-content h2 {
+    color: var(--color-secondary)
+}
+
+.all-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    row-gap: 2rem;
+    justify-items: center;
+}
+
+.all-list .trending-post{
+    height: 50rem;
+    margin-top: 2rem;
+}
+
+@media (max-width: 1200px) {
+    .all-list {
+        grid-template-columns: 50% 50%;
+    }
+
+    .all-list .trending-post {
+        min-width: 50rem;
+        max-width: 50rem;
+        height: 65rem;
+    }
+}
+
+@media (max-width: 1000px) {
+    .all-list {
+        grid-template-columns: 100%;
+    }
+
+    .draw-img {
+        height: 50rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .draw-img {
+        height: 40rem;
+    }
+}
+
+@media (max-width: 460px) {
+    .all-content {
+        padding: 0 1rem;
+    }
+
+    .all-list .trending-post {
+        min-width: 30rem;
+        max-width: 30rem;
+        height: 45rem;
+    }
+
+    .draw-img {
+        padding: 0;
+        height: 30rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .trending-post {
+        min-width: 37rem;
+        max-width: 37rem;
+    }
+
+    .trending-list {
+        height: 50rem;
+    }
+
+    .draw-img {
+        height: 20rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .trending-post {
+        min-width: 33rem;
+        max-width: 33rem;
+    }
+
+    .trending-list {
+        height: 50rem;
+    }
+}
+
+
+@media (max-width: 300px) {
+    .trending-post {
+        min-width: 24rem;
+        max-width: 24rem;
+
+    }
+
+    .trending-list {
+        height: 40rem;
+    }
 }

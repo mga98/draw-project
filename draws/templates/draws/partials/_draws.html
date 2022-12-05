@@ -34,7 +34,10 @@
 </div>
 
 <div class="trending-area">
-    <h2>Recent Posts</h2>
+    <div class="recent-posts">
+        <h2>Recent Posts</h2>
+        <a class="all-draws-link" href="{% url 'draws:all_draws' %}">Ver mais...</a>
+    </div>
     <div class="trending-list">
 
         {% for draw in draws %}
