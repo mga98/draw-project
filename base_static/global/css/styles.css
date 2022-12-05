@@ -105,20 +105,34 @@ header {
     color: var(--color-tertiary);
 }
 
-.main-navigation nav input {
+.search_form {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-input {
     width: 20%;
-    height: 3rem;
     background-color: var(--color-primary-dark);
     color: var(--color-gray-1);
     border: none;
     border-bottom: 0.1rem solid var(--color-tertiary);
     transition: all 200ms ease-in-out;
+    text-indent: 0.6rem;
+    outline: none;
 }
 
-.main-navigation nav input:focus {
+.search-input:focus {
     outline: none;
     width: 30%;
-    text-indent: 0.6rem;
+}
+
+.search-button {
+    border: none;
+    background: none;
+    outline: none;
+    color: var(--color-tertiary);
 }
 
 .content-area {
