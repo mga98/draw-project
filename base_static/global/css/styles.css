@@ -1,7 +1,7 @@
 :root {
-    --color-primary: #bdd6fc;
-    --color-secondary: #0d1c33;
-    --color-tertiary: #cf3c0b;
+    --color-primary: #b9a7ef;
+    --color-secondary: #181529;
+    --color-tertiary: rgb(222, 54, 88);
     --color-primary-dark-hover: #161b33;
     --color-primary-light: #d4ecfa;
     --color-primary-light-hover: #bdd8e7;
@@ -244,6 +244,21 @@ header {
     color: var(--color-tertiary);
 }
 
+.recent-posts .all-draws-link {
+    padding: 0.7rem 1.5rem;
+    color: var(--color-gray-0);
+    background-color: var(--color-secondary);
+    border: 0.1rem solid var(--color-secondary);
+    border-radius: 0.5rem;
+    transition: all 300ms ease-in-out;
+}
+
+.recent-posts .all-draws-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+    border: 0.1rem solid var(--color-secondary);
+}
+
 .like-button {
     position: absolute;
     top: 1rem;
@@ -446,6 +461,14 @@ header {
         grid-template-columns: 50% 50%;
     }
 
+    .search-input {
+        width: 50%;
+    }
+
+    .search-input:focus {
+        width: 60%;
+    }
+
     .all-list .trending-post {
         min-width: 50rem;
         max-width: 50rem;
@@ -487,6 +510,22 @@ header {
 }
 
 @media (max-width: 400px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+
+    h2 {
+        font-size: 2.3rem;
+    }
+
+    h3 {
+        font-size: 2rem;
+    }
+
+    .main-navigation nav li a{
+        font-size: 1.6rem;
+    }
+
     .trending-post {
         min-width: 37rem;
         max-width: 37rem;
