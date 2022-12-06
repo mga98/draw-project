@@ -8,6 +8,36 @@ from .models import Draw
 from utils.pagination import make_pagination
 
 
+class DrawListViewBase(ListView):
+    model = Draw
+    context_object_name = 'draws'
+    paginate_by = None
+    ordering = ['-id',]
+    template_name = 'draws/pages/all_draws.html'
+
+    def get_queryset(self, *args, **kwargs):
+        qs = super().get_queryset(*args, **kwargs)
+        qs = qs.filter(
+            is_published=True,
+        )
+
+        return qs
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        paje_obj, pagination_range = make_pagination(
+            self.request,
+            ctx.get('draws'),
+            1
+        )
+        ctx.update({
+            'draws': paje_obj,
+            'pagination_range': pagination_range,
+        })
+
+        return ctx
+
+
 def home(request):
     draws = Draw.objects.filter(
         is_published=True,
@@ -45,11 +75,8 @@ def all_draws(request):
     })
 
 
-class DrawSearch(ListView):
+class DrawSearch(DrawListViewBase):
     template_name = 'draws/pages/draws_search.html'
-    model = Draw
-    context_object_name = 'draws'
-    ordering = ['-id']
 
     def get_search_term(self):
         search_term = self.request.GET.get('q', '').strip()
@@ -78,7 +105,7 @@ class DrawSearch(ListView):
         ctx.update(
             {
                 'page_title': f'Pesquisa por {search_term}',
-                'aditional_url_query': f'&q={search_term}'
+                'additional_url_query': f'&q={search_term}',
             }
         )
 
