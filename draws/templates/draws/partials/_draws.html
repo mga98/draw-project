@@ -2,7 +2,7 @@
     <h2>Trending Posts</h2>
     <div class="trending-list">
 
-        {% for draw in draws %}
+        {% for draw in trending_draws %}
             <div class="trending-post">
                 
                 {% if draw.img %}
@@ -40,7 +40,7 @@
     </div>
     <div class="trending-list">
 
-        {% for draw in draws %}
+        {% for draw in recent_draws %}
         <div class="trending-post">
                 
             {% if draw.img %}

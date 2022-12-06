@@ -43,10 +43,13 @@ def home(request):
         is_published=True,
     ).order_by('-id')
 
+    recent_draws = draws.order_by('-id')[:10]
+    trending_draws = draws.order_by('-id')[:5]
     # Add a trending logic here.
 
     return render(request, 'draws/pages/home.html', context={
-        'draws': draws
+        'trending_draws': trending_draws,
+        'recent_draws': recent_draws,
     })
 
 
