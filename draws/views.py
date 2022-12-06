@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView
+
 from django.http import Http404
 from django.db.models import Q
 
 from .models import Draw
+from utils.pagination import make_pagination
 
 
 def home(request):
@@ -31,10 +33,15 @@ def all_draws(request):
         is_published=True,
     ).order_by('-id')
 
-    # Add pagination logic here.
+    page_obj, pagination_range = make_pagination(
+        request,
+        draws,
+        9
+    )
 
     return render(request, 'draws/pages/all_draws.html', context={
-        'draws': draws
+        'draws': page_obj,
+        'pagination_range': pagination_range,
     })
 
 
