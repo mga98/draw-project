@@ -14,7 +14,7 @@ class DrawHomeViewTest(DrawTestBase):
         self.make_draw(is_published=False)
 
         response = self.client.get(reverse('draws:home'))
-        response_context_draws = response.context['draws']
+        response_context_draws = response.context['recent_draws']
 
         self.assertEqual(len(response_context_draws), 0)
 

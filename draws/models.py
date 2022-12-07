@@ -3,8 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Draw(models.Model):
-    title = models.CharField('Título', max_length=40)
-    description = models.CharField('Descrição', max_length=140)
+    title = models.CharField('Título', max_length=35)
+    description = models.CharField('Descrição', max_length=40)
     slug = models.SlugField(unique=True)
     about = models.TextField('Sobre')
     created_at = models.DateTimeField('Criado em', auto_now_add=True)

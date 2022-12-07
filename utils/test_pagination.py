@@ -85,6 +85,6 @@ class PaginationTest(DrawTestBase):
         # Current page is 1
         url = reverse('draws:home')
         response = self.client.get(url + '?page=1')
-        response_context_draws = response.context['draws']
+        response_context_draws = response.context['recent_draws']
 
         self.assertEqual(len(response_context_draws), 2)
