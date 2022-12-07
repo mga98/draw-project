@@ -1,0 +1,20 @@
+<div class="register-form">
+    <form class="main-form" action="{{ form.action }}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for field in form %}
+
+            <label for="{{ field.id_for_label }}">
+                {{ field.label }}
+            </label>
+            {{ field }}
+
+            {% if field.help_text %}
+                <p class="help-text">{{ field.help_text }}</p>
+            {% endif %}
+
+        {% endfor %}
+        <div class="form-button">
+            <button type="submit">Enviar</button>
+        </div>
+    </form>
+</div>
