@@ -1,4 +1,5 @@
 from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.http import Http404
@@ -41,6 +42,9 @@ def register_create(request):
 
         if authenticated_user is not None:
             login(request, authenticated_user)
+            messages.success(
+                request, 'Você foi registrado e logado com sucesso!'
+            )
 
             del (request.session['register_form_data'])
 
@@ -80,7 +84,14 @@ def login_create(request):
 
         if authenticated_user is not None:
             login(request, authenticated_user)
+            messages.success(request, 'Logado com sucesso!')
 
             return redirect(reverse('draws:home'))
+
+        else:
+            messages.error(request, 'Usuário ou senha inválidos!')
+
+    else:
+        messages.error(request, 'Erro ao válidar formulário!')
 
     return redirect(login_url)

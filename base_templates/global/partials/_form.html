@@ -13,6 +13,8 @@
                 <p class="help-text">{{ field.help_text }}</p>
             {% endif %}
 
+            {{ field.errors }}
+
         {% endfor %}
         <div class="form-button">
             <button type="submit">{{ form_button }}</button>

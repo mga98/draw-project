@@ -62,6 +62,57 @@ a {
     text-decoration: none;
 }
 
+/* Messages */
+
+.center-messages {
+    width: 100%;
+    text-align: center;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 4px;
+    border: 1px solid var(--color-dark-text);
+    background: var(--color-gray-2);
+    color: var(--color-dark-text);
+}
+
+.message-error {
+    border: 1px solid var(--color-error-dark);
+    background: var(--color-error-light);
+    color: var(--color-error-dark);
+  }
+  
+.message-success {
+border: 1px solid var(--color-success-dark);
+background: var(--color-success-light);
+color: var(--color-success-dark);
+}
+
+.message-warning {
+border: 1px solid var(--color-warning-dark);
+background: var(--color-warning-light);
+color: var(--color-warning-dark);
+}
+
+.message-alert {
+border: 1px solid var(--color-alert-dark);
+background: var(--color-alert-light);
+color: var(--color-alert-dark);
+}
+
+.message-info {
+border: 1px solid var(--color-info-dark);
+background: var(--color-info-light);
+color: var(--color-info-dark);
+}
+
+.message-debug {
+border: 1px solid var(--color-debug-dark);
+background: var(--color-debug-light);
+color: var(--color-debug-dark);
+}
+
 /* Pagination */
 
 .pagination-content {
@@ -465,6 +516,7 @@ header {
 
 .main-form {
     display: flex;
+    max-width: 70rem;
     flex-flow: column wrap;
     padding: 4rem;
     background-color: var(--color-gray-1);

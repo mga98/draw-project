@@ -3,7 +3,16 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
+    {% include 'global/partials/_messages.html' %}
+
+    
+
     {% if not request.user.is_authenticated %}
         {% include 'global/partials/_form.html' %}
+    {% else %}
+        <div class="center-messages">
+            <p>Você está logado como {{ request.user.username }}</p>
+            <a href="">Sair</a>
+        </div>
     {% endif %}
 {% endblock content %}
