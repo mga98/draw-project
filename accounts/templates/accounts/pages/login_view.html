@@ -1,1 +1,9 @@
 {% extends 'global/base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+    {% if not request.user.is_authenticated %}
+        {% include 'global/partials/_form.html' %}
+    {% endif %}
+{% endblock content %}

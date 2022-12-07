@@ -510,11 +510,13 @@ header {
 .form-button {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 3.5rem;
 }
 
-.form-button button {
+.form-button button, .login-button {
     width: 15rem;
     height: 3.5rem;
     border-radius: 0.5rem;
@@ -527,7 +529,19 @@ header {
 }
 
 .form-button button:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-gray-1);
+    border: 0.1rem solid var(--color-tertiary);
+}
+
+.form-button p {
+    margin: 1rem;
+}
+
+.form-button .login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color-gray-1);
     border: 0.1rem solid var(--color-tertiary);
 }
 

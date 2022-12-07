@@ -16,6 +16,12 @@
         {% endfor %}
         <div class="form-button">
             <button type="submit">{{ form_button }}</button>
+            {% if is_login_form %}
+                <p>Ou</p>
+                <a href="{% url 'accounts:register' %}" class="login-button">Registre-se</a>
+            {% endif %}
         </div>
+
+        
     </form>
 </div>
