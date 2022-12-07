@@ -1,6 +1,6 @@
 <header class="main-navigation">
     <nav>
-        <h1><a class="site-title" href="{% url 'draws:home' %}">TITLE</a></h1>
+        <h1><a class="site-title" href="{% url 'draws:home' %}">draw_project</a></h1>
         <form class="search_form" action="{% url 'draws:draws_search' %}">
             <input class="search-input" type="search" placeholder="Search here" name="q" autocomplete="off" value="{{ search_term }}" required>
             <button class="search-button" type="submit" class="search-button"><i class="fas fa-search"></i></button>

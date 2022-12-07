@@ -198,6 +198,7 @@ header {
     padding: 1rem;
     padding-bottom: 2rem;
     width: 100%;
+    height: 58rem;
     display: flex;
     align-items: stretch;
     flex-direction: row;
@@ -225,13 +226,19 @@ header {
 
 .trending-post {
     position: relative;
-    height: 100%;
+    margin: 0 2rem;
     max-width: 35rem;
     min-width: 35rem;
-    height: auto;
-    margin: 0 2rem;
     box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-8);
     transition: all 300ms ease-in-out;
+}
+
+.trending-post:hover {
+    transform: scale(1.01);
+}
+
+.post-img {
+    height: 42rem;
 }
 
 .like-button {
@@ -243,7 +250,6 @@ header {
     background-color: inherit;
     border: none;
     color: var(--color-tertiary);
-    transition: all 300ms ease-in-out;
 }
 
 .like-button:hover {
@@ -251,31 +257,21 @@ header {
     color: rgb(197, 13, 13)
 }
 
-.trending-post:hover {
-    transform: scale(1.01);
-}
-
-.trending-post img {
+.trending-post img{
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .trending-post footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: var(--color-gray-0);
-    background-color: rgba(0, 0, 0, 0.805);
-    padding: 1rem;
+    position: relative;
     font-size: 1.5rem;
-    border-top: 0.3rem solid var(--color-tertiary);
-    border-radius: 0.5rem 0.5rem 0 0;
+    padding: 1rem;
+    background-color: var(--color-gray-2);
 }
 
 .trending-post footer p {
-    color: var(--color-gray-3);
+    color: var(--color-gray-8);
 }
 
 .user-info {
@@ -292,7 +288,7 @@ header {
 
 .post-info a {
     font-size: 2rem;
-    color: var(--color-gray-1)
+    color: var(--color-secondary);
 }
 
 .post-info p {
@@ -304,7 +300,7 @@ header {
 }
 
 .post-info .post-description {
-    color: var(--color-gray-0)
+    color: var(--color-gray-7)
 }
 
 .recent-posts {
@@ -375,7 +371,10 @@ header {
 }
 
 .draw-body {
+    display: flex;
     max-width: 100%;
+    flex-direction: column;
+    align-items: center;
 }
 
 .draw-img {
@@ -446,19 +445,18 @@ header {
 .all-list {
     width: 100%;
     display: grid;
-    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-template-columns: 1fr 1fr 1fr;
     row-gap: 2rem;
     justify-items: center;
 }
 
 .all-list .trending-post{
-    height: 50rem;
     margin-top: 2rem;
 }
 
 @media (max-width: 1200px) {
     .all-list {
-        grid-template-columns: 50% 50%;
+        grid-template-columns: 1fr 1fr;
     }
 
     .search-input {
@@ -473,7 +471,7 @@ header {
 
 @media (max-width: 1000px) {
     .all-list {
-        grid-template-columns: 100%;
+        grid-template-columns: 1fr;
     }
 }
 
