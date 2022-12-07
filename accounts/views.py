@@ -8,10 +8,14 @@ def register_view(request):
     register_form_data = request.session.get('register_form_data', None)
 
     form = RegisterForm(register_form_data)
+    form_title = 'Register'
+    form_button = 'Enviar'
 
     return render(request, 'accounts/pages/register_view.html', context={
         'form': form,
-        'form_action': reverse('accounts:register_create')
+        'form_action': reverse('accounts:register_create'),
+        'form_title': form_title,
+        'form_button': form_button,
     })
 
 

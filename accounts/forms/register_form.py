@@ -63,9 +63,10 @@ class RegisterForm(forms.ModelForm):
         fields = [
             'first_name',
             'last_name',
+            'email',
             'username',
             'password',
-            'email',
+            
         ]
 
     def clean_email(self):
