@@ -6,8 +6,8 @@
             <button class="search-button" type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
         <ul>
-            <li><a href="">Login</a></li>
-            <li><a href="">Register</a></li>
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:register' %}">Register</a></li>
         </ul>
     </nav>
 </header>
