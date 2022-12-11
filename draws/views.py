@@ -1,11 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
+from django.http import Http404
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
 
-from django.http import Http404
-from django.db.models import Q
+from utils.pagination import make_pagination
 
 from .models import Draw
-from utils.pagination import make_pagination
 
 
 class DrawListViewBase(ListView):
