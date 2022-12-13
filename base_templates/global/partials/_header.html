@@ -6,8 +6,23 @@
             <button class="search-button" type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
         <ul>
-            <li><a href="{% url 'accounts:login' %}">Login</a></li>
-            <li><a href="{% url 'accounts:register' %}">Register</a></li>
+            {% if not request.user.is_authenticated %}
+                <li><a href="{% url 'accounts:login' %}">Login</a></li>
+                <li><a href="{% url 'accounts:register' %}">Register</a></li>
+            {% else %}
+                <div class="user-icon-menu">
+                    <button class="dropdown-user"><i class="fas fa-light fa-user fa-xl"></i></button>
+                    <div class="dropdown-user-content">
+                        <p>{{ request.user.first_name }}</p>
+                        <a href="">Dashboard</a>
+                        <form action="{% url 'accounts:logout' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="username" value="{{ user.username }}">
+                            <button class="logout-button" type="submit">Sair</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
         </ul>
     </nav>
 </header>

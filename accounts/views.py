@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -95,3 +96,18 @@ def login_create(request):
         messages.error(request, 'Erro ao válidar formulário!')
 
     return redirect(login_url)
+
+
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def logout_view(request):
+    if not request.POST:
+        messages.error(request, 'Logout não pode ser executado!')
+        return redirect(reverse('accounts:login'))
+
+    if request.POST.get('username') != request.user.username:
+        messages.error(request, 'Usuário de logout inválido')
+        return redirect(reverse('accounts:login'))
+
+    logout(request)
+    messages.success(request, 'Você foi deslogado.')
+    return redirect(reverse('accounts:login'))

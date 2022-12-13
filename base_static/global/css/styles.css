@@ -219,6 +219,77 @@ header {
     color: var(--color-tertiary);
 }
 
+.user-icon-menu {
+    position: relative;
+    transition: all 300ms ease-in-out;
+}
+
+.dropdown-user {
+    border: none;
+    outline: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dropdown-user i {
+    color: var(--color-secondary);
+}
+
+.dropdown-user-content {
+    display: none;
+    position: absolute;
+    max-width: 50rem;
+    background-color: rgba(240, 238, 238, 0.61);
+    right: 0.8rem;
+    box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-9);
+    z-index: 1;
+}
+
+.dropdown-user-content .logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.user-icon-menu .dropdown-user-content a,
+.dropdown-user-content .logout-button,
+.user-icon-menu .dropdown-user-content p {
+    display: block;
+    width: 100%;
+    text-align: left;
+    color: var(--color-gray-8);
+    font-size: 1.6rem;
+    padding: 1rem 4.5rem 1rem 2rem;
+}
+
+.user-icon-menu .dropdown-user-content p {
+    color: var(--color-tertiary);
+    background-color: #181529dd;
+    font-size: 1.7rem;
+    font-weight: bold;
+}
+
+.user-icon-menu .dropdown-user-content a:hover,
+.dropdown-user-content .logout-button:hover {
+    background-color: #181529dd;
+    color: var(--color-gray-1);
+}
+
+.user-icon-menu:hover .dropdown-user-content {
+    display: block;
+}
+
+.user-icon-menu:hover .dropdown-user {
+    background-color: var(--color-secondary);
+}
+
+.user-icon-menu:hover .dropdown-user i {
+    color: var(--color-primary);
+}
+
 /* Body */
 
 .content-area {
@@ -598,6 +669,24 @@ header {
     border: 0.1rem solid var(--color-tertiary);
 }
 
+/* logout form */
+
+.logout-message {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.logout-message .plaintext-button {
+    display: inline;
+    background: none;
+    border: none;
+    margin: 0.5rem;
+    cursor: pointer;
+    color: var(--color-tertiary);
+}
+
 @media (max-width: 1200px) {
     .all-list {
         grid-template-columns: 1fr 1fr;
@@ -665,6 +754,13 @@ header {
         max-width: 30rem;
     }
 
+    .logout-message {
+        font-size: 1.2rem;
+    }
+
+    .logout-message .plaintext-button {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 330px) {

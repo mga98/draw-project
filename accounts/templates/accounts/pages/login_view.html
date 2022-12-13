@@ -11,8 +11,15 @@
         {% include 'global/partials/_form.html' %}
     {% else %}
         <div class="center-messages">
-            <p>Você está logado como {{ request.user.username }}</p>
-            <a href="">Sair</a>
+            <div class="logout-message">
+                <p>Você está logado como {{ user.username }}, clique</p>
+                <form action="{% url 'accounts:logout' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="username" value="{{ user.username }}">
+                    <button type="submit" class="plaintext-button">aqui</button>
+                </form>
+                <p>para sair.</p>
+            </div>
         </div>
     {% endif %}
 {% endblock content %}
