@@ -240,12 +240,16 @@ header {
 
 .dropdown-user-content {
     display: none;
+    width: 15rem;
     position: absolute;
-    max-width: 50rem;
     background-color: rgba(240, 238, 238, 0.61);
     right: 0.8rem;
     box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-9);
     z-index: 1;
+}
+
+.dropdown-links {
+    border-bottom: 0.1rem solid var(--color-gray-3);
 }
 
 .dropdown-user-content .logout-button {
@@ -262,7 +266,7 @@ header {
     text-align: left;
     color: var(--color-gray-8);
     font-size: 1.6rem;
-    padding: 1rem 4.5rem 1rem 2rem;
+    padding: 1rem 6rem 1rem 2rem;
 }
 
 .user-icon-menu .dropdown-user-content p {
@@ -272,10 +276,14 @@ header {
     font-weight: bold;
 }
 
-.user-icon-menu .dropdown-user-content a:hover,
-.dropdown-user-content .logout-button:hover {
+.user-icon-menu .dropdown-user-content a:hover {
     background-color: #181529dd;
     color: var(--color-gray-1);
+}
+
+.dropdown-user-content .logout-button:hover {
+    background-color: rgba(248, 34, 34, 0.841);
+    color: var(--color-gray-1)
 }
 
 .user-icon-menu:hover .dropdown-user-content {
