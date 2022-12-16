@@ -695,6 +695,108 @@ header {
     color: var(--color-tertiary);
 }
 
+/* User profile */
+
+.my-draws-content {
+    display: flex;
+    width: 100%;
+}
+
+.artist-area {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.artist-area h2 {
+    color: var(--color-secondary);
+}
+
+.artist-area h3 {
+    color: var(--color-tertiary);
+}
+
+.artist-about {
+    margin-top: 2rem;
+}
+
+.artist-about p {
+    padding: 1rem 2rem;
+}
+
+.user-img {
+    width: 20rem;
+    height: 20rem;
+    border-radius: 50%;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.my-draws {
+    padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+.my-draws-card {
+    display: flex;
+    position: relative;
+    width: 100%;
+    background-color: white;
+    margin: 2rem 0;
+    box-shadow: 0.1rem 0.1rem 1rem var(--color-gray-8);
+    transition: all 300ms ease-in-out;
+}
+
+.my-draws-card:hover {
+    transform: scale(1.03);
+}
+
+.img-link {
+    width: 10rem;
+    display: flex;
+}
+
+.img-link img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.my-draw-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.my-draw-info a {
+    font-size: 2rem;
+    color: var(--color-secondary);
+}
+
+.my-draw-info p {
+    padding: 0.5rem 0;
+}
+
+.draw-edit-icons {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    right: 0;
+    top: 0;
+}
+
+.draw-edit-icons a,
+.artist-area a {
+    padding: 1rem;
+    color: var(--color-tertiary)
+}
+
 @media (max-width: 1200px) {
     .all-list {
         grid-template-columns: 1fr 1fr;
@@ -713,6 +815,24 @@ header {
 @media (max-width: 1000px) {
     .all-list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 680px) {
+    .my-draws-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .artist-area {
+        width: 100%;
+    }
+
+    .my-draws {
+        width: 100%;
+        padding: 0;
+        margin-top: 2rem;
     }
 }
 

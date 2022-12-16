@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.http import Http404
 
 from .forms import RegisterForm, LoginForm
+from draws.models import Draw
 
 
 def register_view(request):
@@ -111,3 +112,14 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Você foi deslogado.')
     return redirect(reverse('accounts:login'))
+
+
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def my_draws(request):
+    draws = Draw.objects.filter(
+        author=request.user
+    ).order_by('-id')
+
+    return render(request, 'accounts/pages/my_draws.html', context={
+        'draws': draws
+    })

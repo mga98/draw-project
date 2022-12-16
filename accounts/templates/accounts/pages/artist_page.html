@@ -1,0 +1,42 @@
+{% extends 'global/base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    <div class="my-draws-content">
+        <div class="artist-area">
+            <div class="user-img">
+                <img src="" alt="">
+            </div>
+            <h2>Artist name</h2>
+
+            <div class="artist-about">
+                <h3>Artist about</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Impedit delectus nostrum qui ipsum. Ab accusantium tempore unde,
+                    inventore doloremque ipsum, excepturi dolore beatae maxime ipsam officiis,
+                </p>
+            </div>
+        </div>
+        <div class="my-draws">
+            <h2>{{ request.user.first_name }}'s draws</h2>
+            {% for draw in draws %}
+                <div class="my-draws-card">
+                    <a class="img-link" href="">
+                        <img src="{{ draw.img.url }}" alt="">
+                    </a>
+
+                    <div class="my-draw-info">
+                        <div class="draw-title">
+                            <a href="">{{ draw.title }}</a>
+                            <p>{{ draw.description }}</p>
+                        </div>
+                        <div class="my-draw-status">
+                            <p>1234 Likes</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
