@@ -2,3 +2,4 @@
 
 from .register_form import RegisterForm
 from .login_form import LoginForm
+from .draw_form import DrawForm

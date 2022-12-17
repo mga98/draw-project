@@ -1,11 +1,11 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import Http404
 
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, DrawForm
 from draws.models import Draw
 
 
@@ -125,11 +125,37 @@ def my_draws(request):
     })
 
 
-def artist_page(request, pk):
-    draws = Draw.objects.filter(
-        author=pk
-    ).order_by('-id')
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def my_draws_edit(request, pk):
+    draw = get_object_or_404(
+        Draw,
+        author=request.user,
+        pk=pk
+    )
 
-    return render(request, 'accounts/pages/artist_page.html', context={
-        'draws': draws,
+    if not draw:
+        raise Http404
+
+    form = DrawForm(
+        data=request.POST or None,
+        files=request.FILES or None,
+        instance=draw
+    )
+
+    if form.is_valid():
+        draw = form.save(commit=False)
+
+        draw.author = request.user
+        draw.is_published = False
+
+        draw.save()
+
+        messages.success(request, 'Seu desenho foi salvo com sucesso!')
+
+        return redirect(reverse('accounts:my_draws'))
+
+    return render(request, 'accounts/pages/my_draws_edit.html', context={
+        'form': form,
+        'form_button': 'Salvar',
+        'form_title': 'Editar desenho',
     })

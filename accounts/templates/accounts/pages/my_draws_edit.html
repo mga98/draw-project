@@ -1,0 +1,13 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    <h2>{{ draw.title }}</h2>
+
+    {% include 'global/partials/_messages.html' %}
+
+    {% if recipe and not recipe.is_published %}
+        <p>Desenho aguardando aprovação para ser publicado.</p>
+    {% endif %}
+
+    {% include 'global/partials/_form.html' %}
+{% endblock content %}

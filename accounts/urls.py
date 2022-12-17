@@ -11,5 +11,5 @@ urlpatterns = [
     path('login/create/', views.login_create, name='login_create'),
     path('logout/', views.logout_view, name='logout'),
     path('mydraws/', views.my_draws, name='my_draws'),
-    path('artist/<int:pk>', views.artist_page, name='artist_page'),
+    path('mydraws/<int:pk>/edit', views.my_draws_edit, name='my_draws_edit'),
 ]
