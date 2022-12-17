@@ -123,3 +123,13 @@ def my_draws(request):
     return render(request, 'accounts/pages/my_draws.html', context={
         'draws': draws
     })
+
+
+def artist_page(request, pk):
+    draws = Draw.objects.filter(
+        author=pk
+    ).order_by('-id')
+
+    return render(request, 'accounts/pages/artist_page.html', context={
+        'draws': draws,
+    })
