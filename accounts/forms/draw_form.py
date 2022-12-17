@@ -35,12 +35,12 @@ class DrawForm(forms.ModelForm):
 
         if len(title) < 5:
             self._my_errors['title'].append(
-                'O título deve ter mais de 5 caracteres!'
+                'O título deve ter pelo menos 5 caracteres!'
             )
 
         if len(about) < 5:
             self._my_errors['about'].append(
-                'About precisa ter mais de 5 caracteres!'
+                'Sobre precisa ter mais de 5 caracteres!'
             )
 
         if title == description:

@@ -133,9 +133,6 @@ def my_draws_edit(request, pk):
         pk=pk
     )
 
-    if not draw:
-        raise Http404
-
     form = DrawForm(
         data=request.POST or None,
         files=request.FILES or None,
@@ -150,7 +147,7 @@ def my_draws_edit(request, pk):
 
         draw.save()
 
-        messages.success(request, 'Seu desenho foi salvo com sucesso!')
+        messages.success(request, 'Seu desenho foi editado com sucesso!')
 
         return redirect(reverse('accounts:my_draws'))
 

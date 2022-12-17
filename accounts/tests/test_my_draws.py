@@ -1,7 +1,6 @@
 from django.urls import resolve, reverse
 
 from accounts import views
-
 from .test_accounts_base import AccountsTestBase
 
 
