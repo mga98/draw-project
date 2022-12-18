@@ -15,7 +15,7 @@
             </a>
 
             <div class="artist-about">
-                <h3>Artist about:</h3>
+                <h3>Sobre o artista:</h3>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Impedit delectus nostrum qui ipsum. Ab accusantium tempore unde,
                     inventore doloremque ipsum, excepturi dolore beatae maxime ipsam officiis,
@@ -23,7 +23,12 @@
             </div>
         </div>
         <div class="my-draws">
-            <h2>{{ request.user.first_name }}'s draws</h2>
+            <div class="my-draws-header">
+                <h2>Desenhos de {{ request.user.first_name }}:</h2>
+                <a href="{% url 'accounts:my_draws_create' %}">
+                    <i class="fas fa-light fa-plus fa-lg"></i>
+                </a>
+            </div>
             {% for draw in draws %}
                 <div class="my-draws-card">
                     <a class="img-link" href="{% url 'draws:draw_view' draw.id %}">

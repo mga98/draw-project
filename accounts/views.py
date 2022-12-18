@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.http import Http404
+from django.utils.text import slugify
 
 from .forms import RegisterForm, LoginForm, DrawForm
 from draws.models import Draw
@@ -154,5 +155,31 @@ def my_draws_edit(request, pk):
     return render(request, 'accounts/pages/my_draws_edit.html', context={
         'form': form,
         'form_button': 'Salvar',
-        'form_title': 'Editar desenho',
+        'form_title': 'Editar Desenho',
+    })
+
+
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def my_draws_create(request):
+    form = DrawForm(
+        data=request.POST or None,
+        files=request.FILES or None,
+    )
+
+    if form.is_valid():
+        draw = form.save(commit=False)
+
+        draw.author = request.user
+        draw.is_published = False
+        draw.slug = slugify(draw.title, allow_unicode=True)
+
+        draw.save()
+
+        messages.success(request, 'Desenho criado com sucesso!')
+        return redirect(reverse('accounts:my_draws'))
+
+    return render(request, 'accounts/pages/my_draws_edit.html', context={
+        'form': form,
+        'form_button': 'Salvar',
+        'form_title': 'Novo Desenho'
     })

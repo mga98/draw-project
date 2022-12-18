@@ -2,7 +2,7 @@
     <nav>
         <h1><a class="site-title" href="{% url 'draws:home' %}">TITLE</a></h1>
         <form class="search_form" action="{% url 'draws:draws_search' %}">
-            <input class="search-input" type="search" placeholder="Search here" name="q" autocomplete="off" value="{{ search_term }}" required>
+            <input class="search-input" type="search" placeholder="Pesquisar" name="q" autocomplete="off" value="{{ search_term }}" required>
             <button class="search-button" type="submit" class="search-button"><i class="fas fa-search"></i></button>
         </form>
         <ul>
@@ -15,13 +15,14 @@
                     <div class="dropdown-user-content">
                         <p>{{ request.user.first_name }}</p>
                         <div class="dropdown-links">
-                            <a href="{% url 'accounts:my_draws' %}">My draws</a>
-                            <a href="">Profile</a>
+                            <a href="{% url 'accounts:my_draws_create' %}">Novo desenho</a>
+                            <a href="{% url 'accounts:my_draws' %}">Meus desenhos</a>
+                            <a href="">Perfil</a>
                         </div>
                         <form action="{% url 'accounts:logout' %}" method="POST">
                             {% csrf_token %}
                             <input type="hidden" name="username" value="{{ user.username }}">
-                            <button class="logout-button" type="submit">Logout</button>
+                            <button class="logout-button" type="submit">Sair</button>
                         </form>
                     </div>
                 </div>
