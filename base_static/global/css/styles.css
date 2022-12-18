@@ -67,6 +67,7 @@ a {
 .center-messages {
     width: 100%;
     text-align: center;
+    padding: 1rem;
 }
 
 .message {
@@ -827,6 +828,11 @@ header {
 
 .my-draw-info p {
     padding: 0.5rem 0;
+}
+
+.my-draw-status {
+    margin-top: 1rem;
+    font-size: 1.5rem;
 }
 
 .draw-edit-icons {

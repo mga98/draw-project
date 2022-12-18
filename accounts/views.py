@@ -153,6 +153,7 @@ def my_draws_edit(request, pk):
         return redirect(reverse('accounts:my_draws'))
 
     return render(request, 'accounts/pages/my_draws_edit.html', context={
+        'draw': draw,
         'form': form,
         'form_button': 'Salvar',
         'form_title': 'Editar Desenho',
