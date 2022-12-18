@@ -1,13 +1,14 @@
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
-from django.urls import reverse
 from django.http import Http404
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.utils.text import slugify
 
-from .forms import RegisterForm, LoginForm, DrawForm
 from draws.models import Draw
+
+from .forms import DrawForm, LoginForm, RegisterForm
 
 
 def register_view(request):
@@ -184,3 +185,25 @@ def my_draws_create(request):
         'form_button': 'Salvar',
         'form_title': 'Novo Desenho'
     })
+
+
+@login_required(
+    login_url='accounts:my_draws_delete', redirect_field_name='next'
+)
+def my_draws_delete(request):
+    if not request.POST:
+        raise Http404
+
+    POST = request.POST
+    id = POST.get('id')
+
+    draw = get_object_or_404(Draw, author=request.user, pk=id)
+
+    if not draw:
+        raise Http404
+
+    draw.delete()
+
+    messages.success(request, 'Desenho deletado com sucesso!')
+
+    return redirect(reverse('accounts:my_draws'))

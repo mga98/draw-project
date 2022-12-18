@@ -845,10 +845,17 @@ header {
     top: 0;
 }
 
+.draw-edit-icons .delete-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .draw-edit-icons a,
-.artist-area a {
+.artist-area a,
+.draw-edit-icons .delete-button {
     padding: 1rem;
-    color: var(--color-tertiary)
+    color: var(--color-tertiary);
 }
 
 @media (max-width: 1200px) {

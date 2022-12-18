@@ -53,9 +53,11 @@
                             <a href="{% url 'accounts:my_draws_edit' draw.id %}">
                                 <i class="fas fa-light fa-pen-to-square fa-lg"></i>
                             </a>
-                            <a href="">
-                                <i class="fas fa-light fa-trash fa-lg"></i>
-                            </a>
+                            <form class="form-delete" action="{% url 'accounts:my_draws_delete' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ draw.id }}">
+                                <button class="delete-button" type="submit"><i class="fas fa-light fa-trash fa-lg"></i></button>
+                            </form>
                         </div>
                     </div>
                 {% else %}
@@ -80,9 +82,11 @@
                             <a href="{% url 'accounts:my_draws_edit' draw.id %}">
                                 <i class="fas fa-light fa-pen-to-square fa-lg"></i>
                             </a>
-                            <a href="">
-                                <i class="fas fa-light fa-trash fa-lg"></i>
-                            </a>
+                            <form class="form-delete" action="{% url 'accounts:my_draws_delete' %}" method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="id" value="{{ draw.id }}">
+                                <button class="delete-button" type="submit"><i class="fas fa-light fa-trash fa-lg"></i></button>
+                            </form>
                         </div>
                     </div>
                 {% endif %}
