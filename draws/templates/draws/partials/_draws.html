@@ -21,7 +21,7 @@
                     </div>
 
                     <div class="user-info">
-                        <a href="">{{ draw.author.username }}</a>
+                        <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a>
                         <p>{{ draw.created_at|date:"M d, Y" }}</p>
                     </div>
                 </footer>
@@ -59,7 +59,7 @@
                 </div>
 
                 <div class="user-info">
-                    <a href="">{{ draw.author.username }}</a>
+                    <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a>
                     <p>{{ draw.created_at|date:"M d, Y" }}</p>
                 </div>
             </footer>

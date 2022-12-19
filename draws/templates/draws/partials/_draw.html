@@ -19,7 +19,7 @@
                 </button>
                 <p>1561 Likes</p>
             </div>
-            <p>Draw by: <a href="">{{ draw.author.username }}</a></p>
+            <p>Draw by: <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a></p>
         </div>
 
         <div class="draw-about">
