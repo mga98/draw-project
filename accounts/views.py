@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 from draws.models import Draw
-
+from accounts.models import Profile
 from .forms import DrawForm, LoginForm, RegisterForm
 
 
@@ -207,3 +207,18 @@ def my_draws_delete(request):
     messages.success(request, 'Desenho deletado com sucesso!')
 
     return redirect(reverse('accounts:my_draws'))
+
+
+def profile_view(request, pk):
+    profile = get_object_or_404(
+        Profile.objects.filter(pk=pk).select_related('user'), pk=pk
+    )
+    draws = Draw.objects.filter(
+        author=profile.user,
+        is_published=True,
+    ).order_by('-id')
+
+    return render(request, 'accounts/pages/profile_view.html', context={
+        'profile': profile,
+        'draws': draws
+    })

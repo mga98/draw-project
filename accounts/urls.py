@@ -14,4 +14,5 @@ urlpatterns = [
     path('mydraws/<int:pk>/edit/', views.my_draws_edit, name='my_draws_edit'),
     path('mydraws/create/', views.my_draws_create, name='my_draws_create'),
     path('mydraws/delete/', views.my_draws_delete, name='my_draws_delete'),
+    path('profile/<int:pk>/', views.profile_view, name='profile_view'),
 ]
