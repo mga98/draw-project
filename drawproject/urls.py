@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('draws.urls')),
     path('accounts/', include('accounts.urls')),
+    path('__debug__', include('debug_toolbar.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

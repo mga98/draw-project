@@ -39,7 +39,7 @@ class DrawListViewBase(ListView):
 
 
 def home(request):
-    draws = Draw.objects.filter(
+    draws = Draw.objects.select_related('author', 'author__profile').filter(
         is_published=True,
     ).order_by('-id')
 
@@ -62,7 +62,7 @@ def draw(request, pk):
 
 
 def all_draws(request):
-    draws = Draw.objects.filter(
+    draws = Draw.objects.select_related('author', 'author__profile').filter(
         is_published=True,
     ).order_by('-id')
 
