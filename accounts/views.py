@@ -245,4 +245,6 @@ def profile_edit(request, pk):
     return render(request, 'accounts/pages/profile_edit.html', context={
         'form': form,
         'profile': profile,
+        'form_button': 'Salvar',
+        'form_title': 'Editar Perfil'
     })

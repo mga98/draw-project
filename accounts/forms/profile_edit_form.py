@@ -14,7 +14,7 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = Profile
 
-        fields = ('user_img', 'bio')
+        fields = ('bio', 'user_img')
 
     def clean(self, *args, **kwargs):
         super_clean = super().clean(*args, **kwargs)
