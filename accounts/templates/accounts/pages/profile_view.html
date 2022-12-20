@@ -20,7 +20,9 @@
             {% for draw in draws %}
                 <div class="my-draws-card">
                     <a class="img-link" href="{% url 'draws:draw_view' draw.id %}">
-                        <img src="{{ draw.img.url }}" alt="">
+                        {% if draw.img %}
+                            <img src="{{ draw.img.url }}" alt="">
+                        {% endif %}
                     </a>
 
                     <div class="my-draw-info">
@@ -33,6 +35,8 @@
                         </div>
                     </div>
                 </div>
+            {% empty %}
+                <p>Este usuário ainda não publicou nenhum desenho.</p>
             {% endfor %}
         </div>
     </div>

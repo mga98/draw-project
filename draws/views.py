@@ -28,7 +28,7 @@ class DrawListViewBase(ListView):
         paje_obj, pagination_range = make_pagination(
             self.request,
             ctx.get('draws'),
-            1
+            9
         )
         ctx.update({
             'draws': paje_obj,
