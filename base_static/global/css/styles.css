@@ -859,6 +859,53 @@ header {
     color: var(--color-tertiary);
 }
 
+/* Profile form */
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-gray-0);
+    padding: 2rem;
+    box-shadow: 0.1rem 0.1rem 1rem var(--color-gray-7);
+    width: 50rem;
+    overflow: hidden;
+}
+
+.profile-form h2,
+.profile-form h4 {
+    text-align: center;
+}
+
+.profile-form h2 {
+    color: var(--color-tertiary);
+}
+
+.profile-form h4 {
+    padding: 1rem;
+}
+
+.profile-form label {
+    color: var(--color-secondary);
+    padding: 1rem 0;
+}
+
+.profile-form textarea {
+    font-family: var(--font-primary);
+}
+
+.profile-form textarea:focus {
+    border: 0.1rem solid var(--color-tertiary);
+    outline:none;
+}
+
+.profile-form label {
+    margin-top: 2rem;
+}
+
+.user-img-area a {
+    font-size: 1.4rem;
+}
+
 @media (max-width: 1200px) {
     .all-list {
         grid-template-columns: 1fr 1fr;
