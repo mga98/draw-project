@@ -8,7 +8,7 @@ from django.utils.text import slugify
 
 from draws.models import Draw
 from accounts.models import Profile
-from .forms import DrawForm, LoginForm, RegisterForm
+from .forms import DrawForm, LoginForm, RegisterForm, ProfileEditForm
 
 
 def register_view(request):
@@ -221,4 +221,28 @@ def profile_view(request, pk):
     return render(request, 'accounts/pages/profile_view.html', context={
         'profile': profile,
         'draws': draws
+    })
+
+
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def profile_edit(request, pk):
+    profile = get_object_or_404(
+        Profile.objects.filter(pk=pk).select_related('user'), pk=pk
+    )
+
+    form = ProfileEditForm(
+        data=request.POST or None,
+        files=request.FILES or None,
+        instance=profile
+    )
+
+    if form.is_valid():
+        form.save()
+
+        messages.success(request, 'Bio editada com sucesso!')
+        return redirect(reverse('accounts:my_draws'))
+
+    return render(request, 'accounts/pages/profile_edit.html', context={
+        'form': form,
+        'profile': profile,
     })
