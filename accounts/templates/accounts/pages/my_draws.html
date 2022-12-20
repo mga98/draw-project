@@ -7,10 +7,12 @@
     <div class="my-draws-content">
         <div class="artist-area">
             <div class="user-img">
-                <img src="" alt="">
+                {% if request.user.profile.user_img %}
+                    <img src="{{ request.user.profile.user_img.url }}" alt="">
+                {% endif %}
             </div>
             <h2>{{ request.user.get_full_name }}</h2>
-            <a href="">
+            <a href="{% url 'accounts:profile_edit' request.user.id %}">
                 <i class="fas fa-light fa-pen-to-square fa-lg"></i>
             </a>
 

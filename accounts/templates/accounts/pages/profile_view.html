@@ -6,7 +6,9 @@
     <div class="my-draws-content">
         <div class="artist-area">
             <div class="user-img">
-                <img src="" alt="">
+                {% if profile.user_img %}
+                    <img src="{{ profile.user_img.url }}" alt="">
+                {% endif %}
             </div>
             <h2>{{ profile.user.get_full_name }}</h2>
 
