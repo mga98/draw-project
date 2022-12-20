@@ -5,5 +5,32 @@
 {% block content %}
     {% include 'global/partials/_messages.html' %}
 
-    {% include 'draws/partials/_draws.html' %}
+    <div class="trending-area">
+        <h2>Trending Posts</h2>
+        <div class="trending-list">
+    
+            {% for draw in trending_draws %}
+                {% include 'draws/partials/_draw_card.html' %}
+            {% empty %}
+                <p>Nenhum desenho em trendings.</p>
+            {% endfor %}
+    
+        </div>
+    </div>
+    
+    <div class="trending-area">
+        <div class="recent-posts">
+            <h2>Recent Posts</h2>
+            <a class="all-draws-link" href="{% url 'draws:all_draws' %}">Ver mais...</a>
+        </div>
+        <div class="trending-list">
+    
+            {% for draw in recent_draws %}
+                {% include 'draws/partials/_draw_card.html' %}
+            {% empty %}
+                <p>Nenhum desenho recente.</p>
+            {% endfor %}
+    
+        </div>
+    </div>
 {% endblock content %}
