@@ -3,5 +3,15 @@
 {% block title %}{{ page_title }}{% endblock title %}
 
 {% block content %}
-    {% include 'draws/partials/_all_draws.html' %}
+    <div class="all-content">
+        <h2>Recents Draws</h2>
+
+        <div class="all-list">
+            {% for draw in draws %}
+                {% include 'draws/partials/_draw_card.html' %}
+                {% empty %}
+                    <p>Nenhum desenho recente.</p>
+                {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
