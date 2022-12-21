@@ -10,9 +10,6 @@
             <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
             <p class="post-description">{{ draw.description }}</p>
             <p>{{ draw.like_count }} Likes</p>
-            <button class="like-button" id="like-button" action="{{ draw.id }}">
-                <i class="fa fa-light fa-heart fa-2x"></i>
-            </button>
         </div>
 
         <div class="user-info">

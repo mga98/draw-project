@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.text import slugify
@@ -248,3 +248,25 @@ def profile_edit(request, pk):
         'form_button': 'Salvar',
         'form_title': 'Editar Perfil'
     })
+
+
+@login_required
+def like_unlike(request):
+    if request.POST.get('action') == 'post':
+        result = ''
+        id = int(request.POST.get('postid'))
+        draw = get_object_or_404(Draw, id=id)
+
+        if draw.like.filter(id=request.user.profile.id).exists():
+            draw.like.remove(request.user.profile)
+            draw.like_count -= 1
+            result = draw.like_count
+            draw.save()
+
+        else:
+            draw.like.add(request.user.profile)
+            draw.like_count += 1
+            result = draw.like_count
+            draw.save()
+
+        return JsonResponse({'result': result, })

@@ -14,10 +14,14 @@
 
         <div class="draw-info">
             <div class="like-area">
-                <button class="like-button" id="like-button" action="{{ draw.id }}">
-                    <i class="fa fa-light fa-heart fa-2x"></i>
-                </button>
-                <p>1561 Likes</p>
+                {% if request.user.is_authenticated %}
+                    <button class="like-button" value="{{ draw.id }}" id="like-btn">
+                        <i class="fa fa-light fa-heart fa-2x"></i>
+                    </button>
+                {% endif %}
+                <p id="like_count">{{ draw.like_count }}</p>
+                <p>Likes</p>
+
             </div>
             <p>Draw by: <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a></p>
         </div>
@@ -33,7 +37,25 @@
         </div>
 
     </div>
-
-    
-
 </div>
+
+<script>
+    $(document).on('click', '#like-btn', function (e) {
+        e.preventDefault();
+    
+        $.ajax({
+        type: 'POST',
+        url: '{% url "accounts:like_unlike" %}',
+        data: {
+            postid: $('#like-btn').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+            action: 'post'
+        },
+        success: function (json) {
+            document.getElementById("like_count").innerHTML = json['result']
+        },
+        error: function (xhr, errmsg, err) {
+        }
+        });
+    })
+</script>

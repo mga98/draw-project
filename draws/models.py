@@ -5,6 +5,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
 
+from accounts.models import Profile
+
 
 class Draw(models.Model):
     title = models.CharField('Título', max_length=35)
@@ -21,7 +23,7 @@ class Draw(models.Model):
     )
     is_published = models.BooleanField('Publicado', default=False)
     like = models.ManyToManyField(
-        User, related_name='like', default=None, blank=True
+        Profile, related_name='like', default=None, blank=True
     )
     like_count = models.BigIntegerField(default='0')
 
