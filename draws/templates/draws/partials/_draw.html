@@ -26,7 +26,7 @@
                     {% endif %}
                 {% endif %}
                 <p id="like_count">{{ draw.like_count }}</p>
-                <p>Likes</p>
+                <p>Like{{ draw.like_count|pluralize }}</p>
 
             </div>
             <p>Draw by: <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a></p>

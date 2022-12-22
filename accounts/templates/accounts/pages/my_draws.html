@@ -45,7 +45,7 @@
                             </div>
                             <div class="my-draw-status">
                                 <p>(Publicado)</p>
-                                <p>{{ draw.like_count }} Likes</p>
+                                <p>{{ draw.like_count }} Like{{ draw.like_count|pluralize }}</p>
                             </div>
                         </div>
                         <div class="draw-edit-icons">
@@ -74,7 +74,7 @@
                             </div>
                             <div class="my-draw-status">
                                 (Não publicado)
-                                <p>1234 Likes</p>
+                                <p>{{ draw.like_count }} Like{{ draw.like_count|pluralize }}</p>
                             </div>
                         </div>
                         <div class="draw-edit-icons">

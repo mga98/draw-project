@@ -53,7 +53,13 @@ def home(request):
 
 
 def draw(request, pk):
-    draw = get_object_or_404(Draw, id=pk, is_published=True)
+    draw = get_object_or_404(Draw, id=pk)
+
+    if request.user == draw.author:
+        draw = get_object_or_404(Draw, id=pk)
+
+    else:
+        draw = get_object_or_404(Draw, id=pk, is_published=True)
 
     return render(request, 'draws/pages/draw_view.html', context={
         'draw': draw

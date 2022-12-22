@@ -543,7 +543,7 @@ header {
 }
 
 .white {
-    color: white;
+    color: var(--color-gray-0);
 }
 
 .draw-about {

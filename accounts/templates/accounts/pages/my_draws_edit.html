@@ -6,6 +6,10 @@
     {% if draw and not draw.is_published %}
         <p class="center-messages">ATENÇÃO: Desenho aguardando aprovação para ser publicado.</p>
     {% endif %}
+    <p class="center-messages">
+        Editar um desenho fará com que ele fique como "não publicado".
+        O mesmo será publicado após uma revisão.
+    </p>
 
     {% include 'global/partials/_messages.html' %}
 
