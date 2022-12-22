@@ -270,3 +270,14 @@ def like_unlike(request):
             draw.save()
 
         return JsonResponse({'result': result, })
+
+
+@login_required(login_url='accounts:liked_posts', redirect_field_name='next')
+def liked_posts(request):
+    draws = Draw.objects.filter(
+        like=request.user.profile
+    )
+
+    return render(request, 'accounts/pages/liked_posts.html', context={
+        'draws': draws
+    })

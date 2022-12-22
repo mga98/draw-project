@@ -1,0 +1,29 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+
+<h2>Suas curtidas:</h2>
+
+{% for draw in draws %}
+    <div class="my-draws-card">
+        <a class="img-link" href="{% url 'draws:draw_view' draw.id %}">
+            {% if draw.img %}
+                <img src="{{ draw.img.url }}" alt="">
+            {% endif %}
+        </a>
+
+        <div class="my-draw-info">
+            <div class="draw-title">
+                <a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a>
+                <p>{{ draw.description }}</p>
+            </div>
+            <div class="my-draw-status">
+                <p>{{ draw.like_count }} Likes</p>
+            </div>
+        </div>
+    </div>
+{% empty %}
+    <p>Este usuário ainda não publicou nenhum desenho.</p>
+{% endfor %}
+
+{% endblock content %}
