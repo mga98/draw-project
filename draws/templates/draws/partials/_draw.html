@@ -15,9 +15,15 @@
         <div class="draw-info">
             <div class="like-area">
                 {% if request.user.is_authenticated %}
-                    <button class="like-button" value="{{ draw.id }}" id="like-btn">
-                        <i class="fa fa-light fa-heart fa-2x"></i>
-                    </button>
+                    {% if request.user.profile in draw.like.all %}
+                        <button class="like-button" value="{{ draw.id }}" id="like-btn">
+                            <i class="fa fa-light fa-heart fa-2x"></i>
+                        </button>
+                    {% else %}
+                        <button class="like-button white" value="{{ draw.id }}" id="like-btn">
+                            <i class="fa fa-light fa-heart fa-2x"></i>
+                        </button>
+                    {% endif %}
                 {% endif %}
                 <p id="like_count">{{ draw.like_count }}</p>
                 <p>Likes</p>
