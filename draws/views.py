@@ -44,8 +44,7 @@ def home(request):
     ).order_by('-id')
 
     recent_draws = draws.order_by('-id')[:10]
-    trending_draws = draws.order_by('id')[:5]
-    # Add a trending logic here.
+    trending_draws = draws.order_by('-like_count', '-created_at')[:5]
 
     return render(request, 'draws/pages/home.html', context={
         'trending_draws': trending_draws,
