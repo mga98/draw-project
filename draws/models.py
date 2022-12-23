@@ -61,3 +61,12 @@ class Draw(models.Model):
                 ...
 
         return saved
+
+
+class DrawComment(models.Model):
+    draw = models.ForeignKey(
+        Draw, on_delete=models.CASCADE, related_name='comments'
+    )
+    user = models.CharField(max_length=15)
+    comment = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

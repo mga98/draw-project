@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Draw
+from .models import Draw, DrawComment
 
 
 @admin.register(Draw)
@@ -14,3 +14,9 @@ class DrawAdmin(admin.ModelAdmin):
     prepopulated_fields = {
         'slug': ('title',)
     }
+
+
+@admin.register(DrawComment)
+class DrawCommentAdmin(admin.ModelAdmin):
+    list_display = ('draw', 'user', 'created_at')
+    list_display_links = ('draw',)

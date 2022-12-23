@@ -5,7 +5,8 @@ from django.views.generic import ListView
 
 from utils.pagination import make_pagination
 
-from .models import Draw
+from .models import Draw, DrawComment
+from .forms import DrawCommentForm
 
 
 class DrawListViewBase(ListView):
@@ -54,6 +55,9 @@ def home(request):
 
 def draw(request, pk):
     draw = get_object_or_404(Draw, id=pk)
+    comments = DrawComment.objects.filter(
+        draw=pk
+    )
 
     if request.user == draw.author:
         draw = get_object_or_404(Draw, id=pk)
@@ -61,8 +65,26 @@ def draw(request, pk):
     else:
         draw = get_object_or_404(Draw, id=pk, is_published=True)
 
+    if request.method == 'POST':
+        form = DrawCommentForm(
+            request.POST or None,
+        )
+
+        if form.is_valid():
+            comment = form.save(commit=False)
+
+            comment.user = request.user
+            comment.draw = draw
+            comment.save()
+            form = DrawCommentForm()
+
+    else:
+        form = DrawCommentForm()
+
     return render(request, 'draws/pages/draw_view.html', context={
-        'draw': draw
+        'draw': draw,
+        'form': form,
+        'comments': comments,
     })
 
 

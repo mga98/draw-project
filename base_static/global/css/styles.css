@@ -715,6 +715,75 @@ header {
     color: var(--color-tertiary);
 }
 
+/* Comment form and area */
+
+.comment-area {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.leave-your-comment {
+    margin-top: 1rem;
+}
+
+.comment-form {
+    display: flex;
+    margin: 1rem 0;
+    align-items: center;
+}
+
+.comment-form textarea {
+    height: 2rem;
+    width: 45rem;
+    background-color: var(--color-primary);
+    outline: none;
+    border: none;
+    border-bottom: 0.1rem solid var(--color-secondary);
+    text-indent: 0.5rem;
+    font-family: var(--font-primary);
+    margin: 0 1rem;
+}
+
+.comment-form button {
+    background-color: var(--color-secondary);
+    border: 0.1rem solid var(--color-secondary);
+    color: var(--color-tertiary);
+    transition: all ease-in-out 300ms;
+    padding: 0.5rem 2rem;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: var(--color-primary);
+}
+
+.post-comments {
+    margin-top: 2rem;
+    border-top: 0.1rem solid var(--color-gray-5)
+}
+
+.user-comments {
+    margin: 1rem 0;
+    padding: 1rem;
+    border: 0.1rem solid var(--color-gray-7)
+}
+
+.user-comments .comment-text {
+    padding: 0.3rem 0;
+    color: var(--color-secondary)
+}
+
+.comment-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-info .comment-date,
+.comment-info .comment-user {
+    font-size: 1.5rem;
+}
+
 /* User profile */
 
 .my-draws-content {
