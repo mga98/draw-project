@@ -55,9 +55,7 @@ def home(request):
 
 def draw(request, pk):
     draw = get_object_or_404(Draw, id=pk)
-    comments = DrawComment.objects.filter(
-        draw=pk
-    )
+    comments = DrawComment.objects.filter(draw=pk)
 
     if request.user == draw.author:
         draw = get_object_or_404(Draw, id=pk)

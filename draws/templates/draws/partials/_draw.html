@@ -47,12 +47,16 @@
     <div class="comment-area">
         <h3>Comentários:</h3>
         <div class="leave-your-comment">
-            <p>Deixe seu comentário {{ request.user.profile.user.first_name }}</p>
-            <form class="comment-form" action="{% url 'draws:draw_view' draw.id %}" method="POST">
-                {% csrf_token %}
-                {{ form }}
-                <button type="submit" >Comentar</button>
-            </form>
+            {% if request.user.is_authenticated %}
+                <p>Deixe seu comentário {{ request.user.profile.user.first_name }}:</p>
+                <form class="comment-form" action="{% url 'draws:draw_view' draw.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form }}
+                    <button type="submit" >Comentar</button>
+                </form>
+            {% else %}
+                <p>Para comentar faça <a href="{% url 'accounts:login' %}">login</a>, ou <a href="{% url 'accounts:register' %}">registre-se</a>.</p>
+            {% endif %}
         </div>
 
         <div class="post-comments">
@@ -60,7 +64,7 @@
                 <div class="user-comments">
                     <p class="comment-text">{{ comment.comment }}</p>
                     <div class="comment-info">
-                        <a class="comment-user" href="">{{ comment.user }}</a>
+                        <a class="comment-user" href="{% url 'accounts:profile_view' comment.user.id %}">{{ comment.user }}</a>
                         <p class="comment-date">{{ comment.created_at }}</p>
                     </div>    
                 </div>
