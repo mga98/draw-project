@@ -428,6 +428,14 @@ header {
     color: var(--color-gray-7)
 }
 
+.post-status {
+    display: flex;
+}
+
+.post-status p {
+    margin-right: 1rem;
+}
+
 .recent-posts {
     display: flex;
     justify-content: space-between;

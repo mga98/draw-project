@@ -9,7 +9,11 @@
         <div class="post-info">
             <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
             <p class="post-description">{{ draw.description }}</p>
-            <p>{{ draw.like_count }} Like{{ draw.like_count|pluralize }}</p>
+            <div class="post-status">
+                <p>{{ draw.like_count }} Like{{ draw.like_count|pluralize }}</p>
+                <p>|</p>
+                <p>{{ draw.comments.count }} Comentário{{ draw.comments.count|pluralize }}</p>
+            </div>
         </div>
 
         <div class="user-info">

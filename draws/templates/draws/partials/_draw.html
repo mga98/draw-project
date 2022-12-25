@@ -45,7 +45,7 @@
     </div>
 
     <div class="comment-area">
-        <h3>Comentários:</h3>
+        <h3>Comentários({{ comments.count }}):</h3>
         <div class="leave-your-comment">
             {% if request.user.is_authenticated %}
                 <form class="comment-form" action="{% url 'draws:draw_view' draw.id %}" method="POST">
