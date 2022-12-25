@@ -668,6 +668,10 @@ header {
     margin-top: 3.5rem;
 }
 
+.form-button a {
+    font-size: 1.7rem;
+}
+
 .form-button button, .login-button {
     width: 15rem;
     height: 3.5rem;

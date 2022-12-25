@@ -1,10 +1,10 @@
 from django.urls import resolve, reverse
 
 from draws import views
-from .test_draw_base import DrawTestBase
+from accounts.tests.test_accounts_base import AccountsTestBase
 
 
-class DrawDetailViewTest(DrawTestBase):
+class DrawDetailViewTest(AccountsTestBase):
     def test_draw_detail_view_function_is_correct(self):
         view = resolve(reverse('draws:draw_view', kwargs={'pk': 1}))
 
@@ -46,3 +46,34 @@ class DrawDetailViewTest(DrawTestBase):
         )
 
         self.assertEqual(response.status_code, 404)
+
+    def test_logged_in_users_can_see_they_draws_not_publisheds(self):
+        self.make_draw(is_published=False)
+        self.client.login(
+            username='username',
+            password='123456'
+        )
+
+        url = reverse('draws:draw_view', kwargs={'pk': 1})
+        response = self.client.get(url)
+        title = 'Draw Title'
+
+        self.assertIn(title, response.content.decode('utf-8'))
+
+
+class DrawCommentTest(AccountsTestBase):
+    def setUp(self, *args, **kwargs):
+        self.form_data = {
+            'comment': 'Comment Test',
+        }
+
+    def test_succesful_draw_comment(self):
+        self.make_draw_and_login()
+
+        url = reverse('draws:draw_view', kwargs={'pk': 1})
+        response = self.client.post(
+            url, data=self.form_data, follow=True
+        )
+        comment = 'Comment Test'
+
+        self.assertIn(comment, response.content.decode('utf-8'))
