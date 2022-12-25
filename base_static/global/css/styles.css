@@ -730,6 +730,10 @@ header {
     margin-top: 1rem;
 }
 
+.leave-your-comment p {
+    color: var(--color-tertiary);
+}
+
 .comment-form {
     display: flex;
     margin: 1rem 0;
@@ -768,8 +772,9 @@ header {
 
 .user-comments {
     margin: 1rem 0;
-    padding: 1rem;
-    border: 0.1rem solid var(--color-gray-7)
+    padding: 1rem 2rem;
+    border: 0.1rem solid var(--color-gray-7);
+    position: relative;
 }
 
 .user-comments .comment-text {
@@ -786,6 +791,19 @@ header {
 .comment-info .comment-date,
 .comment-info .comment-user {
     font-size: 1.5rem;
+}
+
+.comment-delete {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+}
+
+.comment-delete .delete-comment-button {
+    background-color: var(--color-primary);
+    border: none;
+    color: var(--color-tertiary);
+    cursor: pointer;
 }
 
 /* User profile */

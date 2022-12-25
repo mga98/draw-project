@@ -70,5 +70,5 @@ class DrawComment(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='comment_user', null=True, default=''  # noqa
     )
-    comment = models.TextField()
+    comment = models.TextField(verbose_name='Comentário')
     created_at = models.DateTimeField(auto_now_add=True)

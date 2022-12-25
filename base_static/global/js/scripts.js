@@ -13,5 +13,5 @@ function my_scope() {
       });
     }
   }
-  
+
 my_scope();

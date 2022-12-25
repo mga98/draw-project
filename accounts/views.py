@@ -1,12 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, JsonResponse
+from django.http import Http404, JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.text import slugify
 
-from draws.models import Draw
+from draws.models import Draw, DrawComment
 from accounts.models import Profile
 from .forms import DrawForm, LoginForm, RegisterForm, ProfileEditForm
 
@@ -281,3 +281,21 @@ def liked_posts(request):
     return render(request, 'accounts/pages/liked_posts.html', context={
         'draws': draws
     })
+
+
+@login_required
+def delete_comment(request):
+    if not request.POST:
+        raise Http404
+
+    POST = request.POST
+    id = POST.get('id')
+
+    comment = get_object_or_404(DrawComment, pk=id, user=request.user)
+
+    if not comment:
+        raise Http404
+
+    comment.delete()
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
