@@ -1,7 +1,7 @@
 from django.urls import resolve, reverse
 
-from draws import views
 from accounts.tests.test_accounts_base import AccountsTestBase
+from draws import views
 
 
 class DrawDetailViewTest(AccountsTestBase):
@@ -77,3 +77,41 @@ class DrawCommentTest(AccountsTestBase):
         comment = 'Comment Test'
 
         self.assertIn(comment, response.content.decode('utf-8'))
+
+    def test_draw_comment_deleted(self):
+        self.make_draw_and_login()
+
+        # Making a comment
+        url = reverse('draws:draw_view', kwargs={'pk': 1})
+        self.client.post(
+            url, data=self.form_data, follow=True
+        )
+
+        # Deleting comment
+        url2 = reverse('accounts:comment_delete')
+        self.client.post(
+            url2, data={'id': 1}, follow=True
+        )
+
+        # Back to post page
+        response = self.client.get(url, follow=True)
+        text = 'Comentários(0)'
+
+        self.assertIn(text, response.content.decode('utf-8'))
+
+    def test_draw_comment_delete_receives_get_method(self):
+        self.make_draw_and_login()
+
+        # Making a comment
+        url = reverse('draws:draw_view', kwargs={'pk': 1})
+        self.client.post(
+            url, data=self.form_data, follow=True
+        )
+
+        # Trying to delete with get method
+        url2 = reverse('accounts:comment_delete')
+        response = self.client.get(
+            url2, data={'id': 1}, follow=True
+        )
+
+        self.assertEqual(response.status_code, 404)
