@@ -363,6 +363,7 @@ header {
     min-width: 35rem;
     box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-8);
     transition: all 300ms ease-in-out;
+    border-radius: 0.7rem;
 }
 
 .trending-post:hover {
@@ -393,13 +394,14 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 0.7rem 0.7rem 0 0;
 }
 
 .trending-post footer {
     position: relative;
     font-size: 1.5rem;
     padding: 1rem;
-    background-color: var(--color-gray-2);
+    background-color: var(--color-gray-1);
 }
 
 .trending-post footer p {
