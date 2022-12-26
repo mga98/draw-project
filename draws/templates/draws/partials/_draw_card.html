@@ -1,5 +1,5 @@
-<div class="trending-post">
-                
+<div class="trending-post {{ border }}">
+
     <div class="post-img">
         {% if draw.img %}
             <a href="{% url 'draws:draw_view' draw.id %}"><img src="{{ draw.img.url }}" alt="image"></a>
@@ -21,4 +21,5 @@
             <p>{{ draw.created_at|date:"M d, Y" }}</p>
         </div>
     </footer>
+
 </div>

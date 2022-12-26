@@ -64,7 +64,7 @@
                     <p class="comment-text">{{ comment.comment }}</p>
                     <div class="comment-info">
                         <a class="comment-user" href="{% url 'accounts:profile_view' comment.user.id %}">{{ comment.user }}</a>
-                        <p class="comment-date">{{ comment.created_at }}</p>
+                        <p class="comment-date">{{ comment.created_at|date:"M d, Y" }}</p>
                     </div>
                     {% if request.user == comment.user %}
                         <form class="comment-delete" action="{% url 'accounts:comment_delete' %}" method="POST">

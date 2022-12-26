@@ -461,6 +461,12 @@ header {
     border: 0.1rem solid var(--color-secondary);
 }
 
+/* Draw's borders */
+
+.gold {
+    border: 1rem solid yellow;
+}
+
 /* Draw detail page */
 
 .draw-view {
@@ -744,20 +750,26 @@ header {
 
 .comment-form {
     display: flex;
+    flex-direction: column;
     margin: 1rem 0;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .comment-form textarea {
-    height: 2rem;
-    width: 45rem;
+    height: 2.5rem;
+    width: 55rem;
     background-color: var(--color-primary);
     outline: none;
     border: none;
     border-bottom: 0.1rem solid var(--color-secondary);
     text-indent: 0.5rem;
     font-family: var(--font-primary);
-    margin: 0 1rem;
+    font-size: 1.6rem;
+    margin: 1rem 0;
+}
+
+.comment-form textarea:focus {
+    border-bottom: 0.1rem solid var(--color-tertiary); 
 }
 
 .comment-form button {
@@ -767,6 +779,7 @@ header {
     transition: all ease-in-out 300ms;
     padding: 0.5rem 2rem;
     cursor: pointer;
+    border-radius: 0.4rem;
 }
 
 .comment-form button:hover {
@@ -1047,6 +1060,15 @@ header {
         padding: 2rem;
         background-color: var(--color-primary);
         box-shadow: none;
+    }
+
+    .comment-form textarea {
+        width: 100%;
+    }
+
+    .post-comments p,
+    .post-comments a {
+        font-size: 1.5rem;
     }
 }
 
