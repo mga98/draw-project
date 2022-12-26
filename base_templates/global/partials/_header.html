@@ -3,7 +3,9 @@
         <h1><a class="site-title" href="{% url 'draws:home' %}">TITLE</a></h1>
         <form class="search_form" action="{% url 'draws:draws_search' %}">
             <input class="search-input" type="search" placeholder="Pesquisar" name="q" autocomplete="off" value="{{ search_term }}" required>
-            <button class="search-button" type="submit" class="search-button"><i class="fas fa-search"></i></button>
+            <button class="search-button" type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
         </form>
         <ul>
             {% if not request.user.is_authenticated %}
@@ -11,7 +13,13 @@
                 <li><a href="{% url 'accounts:register' %}">Register</a></li>
             {% else %}
                 <div class="user-icon-menu">
-                    <button class="dropdown-user"><i class="fas fa-light fa-user fa-xl"></i></button>
+                    <button class="dropdown-user">
+                        {% if request.user.profile.user_img %}
+                            <img src="{{ request.user.profile.user_img.url }}" alt="">
+                        {% else %}    
+                            <i class="fas fa-light fa-user fa-xl"></i>
+                        {% endif %}
+                    </button>
                     <div class="dropdown-user-content">
                         <p>{{ request.user.first_name }}</p>
                         <div class="dropdown-links">
