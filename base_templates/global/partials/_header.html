@@ -10,7 +10,6 @@
         <ul>
             {% if not request.user.is_authenticated %}
                 <li><a href="{% url 'accounts:login' %}">Login</a></li>
-                <li><a href="{% url 'accounts:register' %}">Register</a></li>
             {% else %}
                 <div class="user-icon-menu">
                     <button class="dropdown-user">

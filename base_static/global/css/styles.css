@@ -318,6 +318,7 @@ header {
 
 .main-content {
     width: 100%;
+    min-height: 81.3vh;
     margin-top: 4rem;
     padding: 2rem 0;
 }
@@ -1037,6 +1038,10 @@ header {
         padding: 0 1rem;
     }
 
+    .main-content {
+        min-height: 84.3vh;
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -1104,5 +1109,14 @@ header {
 
     .recent-posts .all-draws-link {
         padding: 0.4rem 0.8rem;
+    }
+
+    .main-form p {
+        font-size: 1.3rem;
+    }
+
+    .main-form input,
+    .main-form textarea {
+        width: 100%;
     }
 }
