@@ -9,4 +9,5 @@ urlpatterns = [
     path('draws/<int:pk>/', views.draw, name='draw_view'),
     path('draws/all/', views.all_draws, name='all_draws'),
     path('draws/search/', views.DrawSearch.as_view(), name='draws_search'),
+    path('draws/api/v1', views.HomeViewApi.as_view(), name='draws_api_v1'),
 ]

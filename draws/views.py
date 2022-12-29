@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.http import Http404
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView
+from django.http import JsonResponse
 
 from utils.pagination import make_pagination
 
@@ -51,6 +52,19 @@ def home(request):
         'trending_draws': trending_draws,
         'recent_draws': recent_draws,
     })
+
+
+class HomeViewApi(DrawListViewBase):
+    template_name = 'draws/pages/home.html'
+
+    def render_to_response(self, context, **response_kwargs):
+        draws = self.get_context_data()['draws']
+        draws_list = draws.object_list.values()
+
+        return JsonResponse(
+            list(draws_list),
+            safe=False
+        )
 
 
 def draw(request, pk):
