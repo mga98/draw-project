@@ -1031,6 +1031,10 @@ header {
         padding: 0;
         margin-top: 2rem;
     }
+
+    .main-form a {
+        font-size: 0.5rem
+    }
 }
 
 @media (max-width: 460px) {
@@ -1074,6 +1078,7 @@ header {
         padding: 2rem;
         background-color: var(--color-primary);
         box-shadow: none;
+        width: 100%;
     }
 
     .comment-form textarea {
