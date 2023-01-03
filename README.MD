@@ -14,6 +14,8 @@ post que deseja encontrar.
 que só é exibido caso haja mais de 9 posts publicados ou exibidos em pesquisa.
     Todos os desenhos tem uma página detalhada onde é possível ver o desenho, seu autor, a descrição do desenho,
 um texto sobre o post, o número de likes e os comentários feitos sobre aquele post.
+    É possível também acessar o perfil de todos os usuários do site e ver os projetos que cada usuário tem publicado
+e as informações sobre o usuário, como nome, foto e bio.
 
 ÁREA DE USUÁRIOS:
     O site conta com um sistema de cadastro e login de usuários para que os mesmos possam fazer melhor uso da
