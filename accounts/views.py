@@ -90,7 +90,7 @@ def login_create(request):
             login(request, authenticated_user)
             messages.success(request, 'Logado com sucesso!')
 
-            return redirect(reverse('draws:home'))
+            return redirect(reverse('accounts:my_draws'))
 
         else:
             messages.error(request, 'Usuário ou senha inválidos!')
@@ -113,7 +113,7 @@ def logout_view(request):
 
     logout(request)
     messages.success(request, 'Você foi deslogado.')
-    return redirect(reverse('accounts:login'))
+    return redirect(reverse('draws:home'))
 
 
 @login_required(login_url='accounts:login', redirect_field_name='next')
