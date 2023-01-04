@@ -9,6 +9,7 @@ from django.utils.text import slugify
 from draws.models import Draw, DrawComment
 from accounts.models import Profile
 from .forms import DrawForm, LoginForm, RegisterForm, ProfileEditForm
+from utils.pagination import make_pagination
 
 
 def register_view(request):
@@ -280,8 +281,15 @@ def liked_posts(request):
 
     draws = list(reversed(draws))
 
+    page_obj, pagination_range = make_pagination(
+        request,
+        draws,
+        10
+    )
+
     return render(request, 'accounts/pages/liked_posts.html', context={
-        'draws': draws
+        'draws': page_obj,
+        'pagination_range': pagination_range,
     })
 
 
