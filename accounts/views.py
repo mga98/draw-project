@@ -278,6 +278,8 @@ def liked_posts(request):
         like=request.user.profile
     )
 
+    draws = list(reversed(draws))
+
     return render(request, 'accounts/pages/liked_posts.html', context={
         'draws': draws
     })
