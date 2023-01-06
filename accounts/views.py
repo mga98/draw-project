@@ -1,16 +1,18 @@
+from itertools import chain
+
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, JsonResponse, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.text import slugify
-from itertools import chain
 
-from draws.models import Draw, DrawComment
 from accounts.models import Profile
-from .forms import DrawForm, LoginForm, RegisterForm, ProfileEditForm
+from draws.models import Draw, DrawComment
 from utils.pagination import make_pagination
+
+from .forms import DrawForm, LoginForm, ProfileEditForm, RegisterForm
 
 
 def register_view(request):
@@ -263,13 +265,25 @@ def feed(request):
         usernames.append(user.user)
 
     for username in usernames:
-        draws = Draw.objects.filter(author=username)
+        draws = Draw.objects.select_related(
+            'author', 'author__profile'
+        ).filter(
+            author=username,
+            is_published=True,
+        ).order_by('-created_at')
         feed.append(draws)
 
     feed_list = list(chain(*feed))
 
+    page_obj, pagination_range = make_pagination(
+        request,
+        feed_list,
+        9
+    )
+
     return render(request, 'accounts/pages/feed.html', context={
-        'draws': feed_list,
+        'draws': page_obj,
+        'pagination_range': pagination_range,
     })
 
 
