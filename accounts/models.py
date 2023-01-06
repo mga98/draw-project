@@ -14,6 +14,9 @@ class Profile(models.Model):
         upload_to='accounts/cover/%Y/%m/%d/',
         blank=True, default=''
     )
+    following = models.ManyToManyField(
+        'self', blank=True, related_name='followers', symmetrical=False
+    )
 
     @staticmethod
     def resize_image(image, new_width=800):

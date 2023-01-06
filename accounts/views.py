@@ -5,6 +5,7 @@ from django.http import Http404, JsonResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.text import slugify
+from itertools import chain
 
 from draws.models import Draw, DrawComment
 from accounts.models import Profile
@@ -249,6 +250,49 @@ def profile_edit(request, pk):
         'form_button': 'Salvar',
         'form_title': 'Editar Perfil'
     })
+
+
+@login_required(login_url='accounts:login', redirect_field_name='next')
+def feed(request):
+    profile = get_object_or_404(Profile, id=request.user.id)
+
+    usernames = []
+    feed = []
+
+    for user in profile.following.all():
+        usernames.append(user.user)
+
+    for username in usernames:
+        draws = Draw.objects.filter(author=username)
+        feed.append(draws)
+
+    feed_list = list(chain(*feed))
+
+    return render(request, 'accounts/pages/feed.html', context={
+        'draws': feed_list,
+    })
+
+
+@login_required
+def follow_unfollow(request):
+    if not request.POST:
+        raise Http404
+
+    POST = request.POST
+    user_id = POST.get('id')
+
+    follower = get_object_or_404(Profile, pk=user_id)
+    current_user = get_object_or_404(Profile, pk=request.user.id)
+
+    if current_user.following.filter(user=user_id).exists():
+        current_user.following.remove(follower)
+        current_user.save()
+
+    else:
+        current_user.following.add(follower)
+        current_user.save()
+
+    return redirect(reverse('draws:home'))
 
 
 @login_required

@@ -1,0 +1,8 @@
+{% extends 'global/base.html' %}
+
+{% block content %}
+    {% for draw in draws %}
+        <p>{{ draw.title }} - {{ draw.author }}</p>
+        
+    {% endfor %}
+{% endblock content %}

@@ -18,5 +18,7 @@ urlpatterns = [
     path('profile/<int:pk>/edit/', views.profile_edit, name='profile_edit'),
     path('like/', views.like_unlike, name='like_unlike'),
     path('liked/', views.liked_posts, name='liked_posts'),
-    path('comment/delete', views.delete_comment, name='comment_delete')
+    path('comment/delete', views.delete_comment, name='comment_delete'),
+    path('profile/follow', views.follow_unfollow, name='follow_unfollow'),
+    path('profile/feed', views.feed, name='feed'),
 ]

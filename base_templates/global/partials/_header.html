@@ -22,7 +22,7 @@
                     <div class="dropdown-user-content">
                         <p>{{ request.user.first_name }}</p>
                         <div class="dropdown-links">
-                            <a href="{% url 'draws:home' %}">Feed</a>
+                            <a href="{% url 'accounts:feed' %}">Feed</a>
                             <a href="{% url 'accounts:my_draws_create' %}">Novo desenho</a>
                             <a href="{% url 'accounts:my_draws' %}">Meus desenhos</a>
                             <a href="{% url 'accounts:liked_posts' %}">Curtidas</a>
