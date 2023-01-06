@@ -1,8 +1,15 @@
 {% extends 'global/base.html' %}
 
 {% block content %}
-    {% for draw in draws %}
-        <p>{{ draw.title }} - {{ draw.author }}</p>
-        
-    {% endfor %}
+    <div class="all-content">
+        <h2>Feed</h2>
+
+        <div class="all-list">
+            {% for draw in draws %}
+                {% include 'draws/partials/_draw_card.html' %}
+                {% empty %}
+                    <p>Nenhum desenho recente.</p>
+                {% endfor %}
+        </div>
+    </div>
 {% endblock content %}
