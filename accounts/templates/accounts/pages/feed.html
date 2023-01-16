@@ -4,12 +4,40 @@
     <div class="all-content">
         <h2>Feed</h2>
 
-        <div class="all-list">
-            {% for draw in draws %}
-                {% include 'draws/partials/_draw_card.html' %}
-                {% empty %}
-                    <p>Nenhum desenho recente.</p>
-                {% endfor %}
+        <div class="feed-content">
+            <div class="feed-posts">
+                {% for draw in draws %}
+                    {% include 'draws/partials/_draw_card.html' %}
+                    {% empty %}
+                        <p>Nenhum desenho recente.</p>
+                    {% endfor %}
+            </div>
+
+            <div class="following-area">
+                
+                <nav class="following-list">
+                    <h3>Seguindo</h3>
+                    <ul>
+                        {% for user in following %}
+                            <li>
+                                <div class="following-img">
+                                    {% if user.user_img %}
+                                        <img src="{{ user.user_img.url }}" alt="">
+                                    {% endif %}
+                                </div>
+                                <div class="following-info">
+                                    <a class="following-user" href="{% url 'accounts:profile_view' user.id %}">{{ user.user }}</a>
+                                    <form action="{% url 'accounts:follow_unfollow' %}" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="id" value="{{ user.user.id }}">
+                                        <button class="unfollow" type="submit">Deixar de seguir</button>
+                                    </form>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
         </div>
     </div>
 {% endblock content %}

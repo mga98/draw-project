@@ -264,6 +264,7 @@ def profile_edit(request, pk):
 @login_required(login_url='accounts:login', redirect_field_name='next')
 def feed(request):
     profile = get_object_or_404(Profile, id=request.user.id)
+    following = profile.following.all()
 
     usernames = []
     feed = []
@@ -285,12 +286,13 @@ def feed(request):
     page_obj, pagination_range = make_pagination(
         request,
         feed_list,
-        9
+        8
     )
 
     return render(request, 'accounts/pages/feed.html', context={
         'draws': page_obj,
         'pagination_range': pagination_range,
+        'following': following,
     })
 
 
