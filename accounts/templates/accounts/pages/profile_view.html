@@ -20,7 +20,6 @@
         <div class="my-draws">
             <div class="follow-area">
                 <h2>{{ profile.user.first_name }}'s draws</h2>
-
                 {% if request.user.is_authenticated %}
                     <form action="{% url 'accounts:follow_unfollow' %}" method="POST">
                         {% csrf_token %}
@@ -31,6 +30,7 @@
                     <a href="{% url 'accounts:login' %}">Faça login para seguir</a>
                 {% endif %}
             </div>
+            {% include 'global/partials/_messages.html' %}
             {% for draw in draws %}
                 <div class="my-draws-card">
                     <a class="img-link" href="{% url 'draws:draw_view' draw.id %}">

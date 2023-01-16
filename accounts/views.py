@@ -315,10 +315,12 @@ def follow_unfollow(request):
     if current_user.following.filter(user=user_id).exists():
         current_user.following.remove(follower)
         current_user.save()
+        messages.success(request, f'Você deixou de seguir {follower.user}')
 
     else:
         current_user.following.add(follower)
         current_user.save()
+        messages.success(request, f'Você começou a seguir {follower.user}')
 
     return redirect(reverse('accounts:profile_view', kwargs={'pk': user_id}))
 
