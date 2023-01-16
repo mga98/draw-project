@@ -221,10 +221,17 @@ def profile_view(request, pk):
         author=profile.user,
         is_published=True,
     ).order_by('-id')
+    current_user = get_object_or_404(Profile, pk=request.user.id)
+
+    if current_user.following.filter(user=pk).exists():
+        follow_button = "Deixar de seguir"
+    else:
+        follow_button = "Seguir"
 
     return render(request, 'accounts/pages/profile_view.html', context={
         'profile': profile,
-        'draws': draws
+        'draws': draws,
+        'follow_button': follow_button,
     })
 
 
@@ -306,7 +313,7 @@ def follow_unfollow(request):
         current_user.following.add(follower)
         current_user.save()
 
-    return redirect(reverse('draws:home'))
+    return redirect(reverse('accounts:profile_view', kwargs={'pk': user_id}))
 
 
 @login_required

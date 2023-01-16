@@ -885,6 +885,27 @@ header {
     object-position: center center;
 }
 
+.follow-area {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.follow-area button {
+    padding: 0.7rem 1.5rem;
+    color: var(--color-gray-0);
+    background-color: var(--color-secondary);
+    border: 0.1rem solid var(--color-secondary);
+    border-radius: 0.5rem;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.follow-area button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-tertiary);
+}
+
 .my-draws {
     padding: 0 2rem;
     display: flex;

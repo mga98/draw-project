@@ -18,17 +18,19 @@
             </div>
         </div>
         <div class="my-draws">
-            <h2>{{ profile.user.first_name }}'s draws</h2>
+            <div class="follow-area">
+                <h2>{{ profile.user.first_name }}'s draws</h2>
 
-            {% if request.user.is_authenticated %}
-                <form action="{% url 'accounts:follow_unfollow' %}" method="POST">
-                    {% csrf_token %}
-                    <input type="hidden" name="id" value="{{ profile.user.id }}">
-                    <button type="submit">follow</button>
-                </form>
-            {% else %}
-                <a href="{% url 'accounts:login' %}">Faça login para seguir</a>
-            {% endif %}
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'accounts:follow_unfollow' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ profile.user.id }}">
+                        <button type="submit">{{ follow_button }}</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'accounts:login' %}">Faça login para seguir</a>
+                {% endif %}
+            </div>
             {% for draw in draws %}
                 <div class="my-draws-card">
                     <a class="img-link" href="{% url 'draws:draw_view' draw.id %}">
