@@ -48,7 +48,7 @@
         <h3>Comentários({{ comments.count }}):</h3>
         <div class="leave-your-comment">
             {% if request.user.is_authenticated %}
-                <form class="comment-form" action="{% url 'draws:draw_view' draw.id %}" method="POST">
+                <form class="comment-form" name="draw-id" value="{{ draw.id }}" action="{% url 'draws:draw_view' draw.id %}" method="POST">
                     {% csrf_token %}
                     {{ form }}
                     <button type="submit" >Comentar</button>
