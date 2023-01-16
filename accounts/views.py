@@ -221,12 +221,17 @@ def profile_view(request, pk):
         author=profile.user,
         is_published=True,
     ).order_by('-id')
-    current_user = get_object_or_404(Profile, pk=request.user.id)
 
-    if current_user.following.filter(user=pk).exists():
-        follow_button = "Deixar de seguir"
+    if request.user.id:
+        current_user = get_object_or_404(Profile, pk=request.user.id)
+
+        if current_user.following.filter(user=pk).exists():
+            follow_button = "Deixar de seguir"
+        else:
+            follow_button = "Seguir"
+
     else:
-        follow_button = "Seguir"
+        follow_button = None
 
     return render(request, 'accounts/pages/profile_view.html', context={
         'profile': profile,
