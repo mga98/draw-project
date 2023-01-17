@@ -26,14 +26,14 @@
                     {% endif %}
                 {% endif %}
                 <p id="like_count">{{ draw.like_count }}</p>
-                <p>Like{{ draw.like_count|pluralize }}</p>
+                <p>Curtida{{ draw.like_count|pluralize }}</p>
 
             </div>
-            <p>Draw by: <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a></p>
+            <p>Publicado por: <a href="{% url 'accounts:profile_view' draw.author.profile.id %}">{{ draw.author.username }}</a></p>
         </div>
 
         <div class="draw-about">
-            <h3>Draw's about</h3>
+            <h3>Sobre o desenho</h3>
             <p>{{ draw.about }}</p>
         </div>
 

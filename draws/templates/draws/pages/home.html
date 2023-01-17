@@ -6,7 +6,7 @@
     {% include 'global/partials/_messages.html' %}
 
     <div class="trending-area">
-        <h2>Trending Posts</h2>
+        <h2>Em alta</h2>
         <div class="trending-list">
     
             {% for draw in trending_draws %}
@@ -20,7 +20,7 @@
     
     <div class="trending-area">
         <div class="recent-posts">
-            <h2>Recent Posts</h2>
+            <h2>Mais recentes</h2>
             <a class="all-draws-link" href="{% url 'draws:all_draws' %}">Ver mais...</a>
         </div>
         <div class="trending-list">
