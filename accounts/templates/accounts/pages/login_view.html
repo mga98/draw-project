@@ -8,7 +8,9 @@
     
 
     {% if not request.user.is_authenticated %}
-        {% include 'global/partials/_form.html' %}
+        <div class="login-form">
+            {% include 'global/partials/_form.html' %}
+        </div>
     {% else %}
         <div class="center-messages">
             <div class="logout-message">
