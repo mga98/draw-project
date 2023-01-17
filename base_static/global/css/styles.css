@@ -1027,6 +1027,10 @@ header {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 5rem;
+    border: 0.1rem solid var(--color-secondary);
+    padding: 5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0.2rem 0.2rem 1rem var(--color-gray-7);
 }
 
 .following-area {
@@ -1040,6 +1044,7 @@ header {
     top: 0;
     background-color: var(--color-secondary);
     padding: 2rem;
+    border-radius: 0.5rem;
 }
 
 .following-list h3 {
@@ -1110,18 +1115,18 @@ header {
 }
 
 @media (max-width: 1100px) {
+    .following-list {
+        display: none;
+    }
+
     .feed-content {
-        justify-content: space-between;
+        justify-content: center;
     }
 }
 
 @media (max-width: 1000px) {
     .all-list {
         grid-template-columns: 1fr;
-    }
-
-    .feed-content {
-        justify-content: space-around;
     }
 
     .feed-posts {
@@ -1150,10 +1155,6 @@ header {
     .main-form a {
         font-size: 0.5rem
     }
-
-    .feed-content {
-        justify-content: space-between;
-    }
 }
 
 @media (max-width: 460px) {
@@ -1163,6 +1164,12 @@ header {
 
     .main-content {
         min-height: 84.3vh;
+    }
+
+    .feed-posts {
+        border: none;
+        padding: 0;
+        box-shadow: none;
     }
 
 }
