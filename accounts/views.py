@@ -269,7 +269,7 @@ def profile_edit(request, pk):
 @login_required(login_url='accounts:login', redirect_field_name='next')
 def feed(request):
     profile = get_object_or_404(Profile, id=request.user.id)
-    following = profile.following.all()
+    following = profile.following.all()[:10]
 
     usernames = []
     feed = []
