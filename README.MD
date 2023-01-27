@@ -1,35 +1,62 @@
-SOBRE:
-    Este projeto foi desenvolvido em Python utilizando o framework Django, HTML e CSS com o
-intuito de juntar as duas coisas que mais gosto de fazer, que são: programar e desenhar. É um
-espaço para os usuários publicarem suas artes e interagirem com as publicações de outros usuários,
-como dar like e comentar.
+<h1 align="center"> Draw-Project </h1>
 
-ÁREA COMUM DO PROJETO:
-    Na home page é exibido uma lista com os trending posts organizados por data e número de likes e
-abaixo os posts mais recentes publicados, onde também há um link para a página de todos os desenhos do
-site, dos mais recentes aos mais antigos.
-    No header do site tem uma caixa de pesquisa onde o usuário pode pesquisar por título ou descrição do
-post que deseja encontrar.
-    Tanto a página que contém todos os desenhos quanto a página de pesquisas contém um algoritmo de paginação
-que só é exibido caso haja mais de 9 posts publicados ou exibidos em pesquisa.
-    Todos os desenhos tem uma página detalhada onde é possível ver o desenho, seu autor, a descrição do desenho,
-um texto sobre o post, o número de likes e os comentários feitos sobre aquele post.
-    É possível também acessar o perfil de todos os usuários do site e ver os projetos que cada usuário tem publicado
-e as informações sobre o usuário, como nome, foto e bio.
+<p align="center">
+<img src="http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge"/>
+</p>
 
-ÁREA DE USUÁRIOS:
-    O site conta com um sistema de cadastro e login de usuários para que os mesmos possam fazer melhor uso da
-aplicação. Usuários registrados podem fazer publicações, comentários e darem like nos desenhos de outros membros.
-    Também é possível alterar sua foto de perfil e sua bio na área de edição de perfil que pode ser acessada no
-menu localizado no header do site. Ainda no header é possível encontrar um link direto para fazer uma publicação,
-um link para exibição dos seus desenhos, foto e bio, um link para exibir os posts que você curtiu e um link direto
-para edição do seu perfil.
-    Na página que exibe os desenhos de cada usuário é possível ver, editar e deletar todos os seus desenhos publicados
-e não publicados.
+<h2> Descrição </h2>
 
-CRIAÇÃO E EDIÇÃO DE POSTS:
-    Todo usuário registrado pode criar e editar seus posts, porém, criar e editar um post fará com que o mesmo fique com
-o status de "Não publicado", ou seja, ele não será exibido para outros usuários até que passe por uma verificação de um
-administrador do site e seja autorizada a publicação do mesmo.
-    Tanto na criação quanto na edição de desenhos publicados os usuários poderão adicionar um título ao mesmo, uma breve
-descrição que será exibida nas páginas abaixo do título, juntos da imagem escolhida e um texto sobre o post.
+<p>
+O projeto é um blog/rede social que da espaço para os usuários postarem suas artes e interagirem com as artes de outros
+usuários, como comentar, dar like e seguir seus artistas favoritos.
+</p>
+
+<h2> Features </h2>
+
+<ul>
+<li>Publicar suas artes</li>
+<li>Seguir outros usuários</li>
+<li>Curtir e comentar posts</li>
+<li>Editar seu perfil e posts</li>
+</ul>
+
+<h2> Screenshots </h2>
+
+![Imagem da home page](https://user-images.githubusercontent.com/95861523/215090261-db7623e9-9549-42bf-a10c-ed362805b58d.png)
+
+![Imagem da detail view e funções como like e comentários](https://user-images.githubusercontent.com/95861523/215090285-3686d1d7-fe81-4f39-9123-705470184f1b.png)
+
+![Feed e perfil](https://user-images.githubusercontent.com/95861523/215090291-84180c7d-5a1d-4df7-9d3b-2782edbf174d.png)
+
+
+<h2> Tecnologias utilizadas </h2>
+
+<ul>
+<li>Python</li>
+<li>Django</li>
+<li>HTML</li>
+<li>CSS</li>
+<li>Javascript e Ajax (mínimo)</li>
+</ul>
+
+<h2> Rodando o projeto </h2>
+<h4> Dependências </h4>
+<ul>
+<li>Python 3.0 ou +</li>
+</ul>
+<h4> Clonando o projeto </h4>
+
+```
+git clone git@github.com:mga98/draw-project.git
+```
+
+<h4> Configurando o projeto </h4>
+<p> Abra o terminal com o ambiente virtual ativo e execute os seguintes comandos: </p>
+
+```
+pip install -r requirements.txt
+python manage.py makemigrations
+python manage.py migrate
+pytest ou python manage.py test # Para testar a aplicação
+python manage.py runserver
+```
