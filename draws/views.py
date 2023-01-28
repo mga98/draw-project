@@ -137,7 +137,8 @@ class DrawSearch(DrawListViewBase):
         qs = qs.filter(
             Q(
                 Q(title__icontains=search_term) |
-                Q(description__icontains=search_term)
+                Q(description__icontains=search_term) |
+                Q(author__username__icontains=search_term)
             ),
             is_published=True,
         )
