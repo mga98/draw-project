@@ -8,7 +8,9 @@
 
 <p>
 O projeto é um blog/rede social que da espaço para os usuários postarem suas artes e interagirem com as artes de outros
-usuários, como comentar, dar like e seguir seus artistas favoritos.
+usuários, como comentar, dar like e seguir seus artistas favoritos. Ele também conta com sistema de autenticação de usuários
+(cadastro e login), edição de perfil com descrição (bio) e imagem de usuário, visualização de perfil de outros usuários e 
+um CRUD para suas próprias publicações.
 </p>
 
 <h2> Features </h2>
@@ -57,6 +59,6 @@ git clone git@github.com:mga98/draw-project.git
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
-pytest ou python manage.py test # Para testar a aplicação
+pytest ou python manage.py test # Para executar os testes da aplicação
 python manage.py runserver
 ```
