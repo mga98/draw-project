@@ -36,6 +36,7 @@ um CRUD para suas próprias publicações.
 <ul>
 <li>Python</li>
 <li>Django</li>
+<li>Django Rest Framework</li>
 <li>HTML</li>
 <li>CSS</li>
 <li>Javascript e Ajax (mínimo)</li>
