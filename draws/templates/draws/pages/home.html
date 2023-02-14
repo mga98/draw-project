@@ -6,31 +6,59 @@
     {% include 'global/partials/_messages.html' %}
 
     <div class="trending-area">
-        <h2>Em alta</h2>
-        <div class="trending-list">
-    
-            {% for draw in trending_draws %}
-                {% include 'draws/partials/_draw_card.html' %}
-            {% empty %}
-                <p>Nenhum desenho em trendings.</p>
-            {% endfor %}
-    
-        </div>
-    </div>
-    
-    <div class="trending-area">
         <div class="recent-posts">
-            <h2>Mais recentes</h2>
-            <a class="all-draws-link" href="{% url 'draws:all_draws' %}">Ver mais...</a>
+            <h2>Em alta</h2>
+            <a class="all-draws-link" href="{% url 'draws:all_draws' %}">Ver todos...</a>
         </div>
         <div class="trending-list">
-    
-            {% for draw in recent_draws %}
+            {% for draw in trending_draws %}
                 {% include 'draws/partials/_draw_card.html' %}
             {% empty %}
                 <p>Nenhum desenho recente.</p>
             {% endfor %}
-    
         </div>
     </div>
 {% endblock content %}
+
+{% block scripts %}
+    <script>
+        $('.like-form').submit(function(e){
+            e.preventDefault()
+            
+            const post_id = $(this).attr('id')
+            
+            const likeText = $(`.like-btn${post_id}`).text()
+            const trim = $.trim(likeText)
+
+            const url = $(this).attr('action')
+            
+            let res;
+            const likes = $(`.like-count${post_id}`).text()
+            const trimCount = parseInt(likes)
+            
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                    'post_id':post_id,
+                },
+                success: function(response) {
+                    if(trim === 'Unlike') {
+                        $(`.like-btn${post_id}`).text('Like')
+                        res = trimCount - 1
+                    } else {
+                        $(`.like-btn${post_id}`).text('Unlike')
+                        res = trimCount + 1
+                    }
+
+                    $(`.like-count${post_id}`).text(res)
+                },
+                error: function(response) {
+                    console.log('error', response)
+                }
+            })
+
+        })
+    </script>
+{% endblock scripts %}

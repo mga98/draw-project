@@ -7,12 +7,29 @@
     </div>
     <footer>
         <div class="post-info">
-            <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
+            <div class="title-like">
+                <h3><a href="{% url 'draws:draw_view' draw.id %}">{{ draw.title }}</a></h3>
+                {% if request.user.is_authenticated %}
+                    <form action="{% url 'accounts:like_unlike' %}" method="POST" class="like-form" id="{{ draw.id }}">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{ draw.id }}>
+
+                            <button type="submit" class="like-btn{{draw.id}}">
+                                {% if request.user.profile not in draw.like.all %}
+                                    Like
+                                {% else %}
+                                    Unlike
+                                {% endif %}
+                            </button>
+                    </form>
+                {% endif %}
+            </div>
             <p class="post-description">{{ draw.description }}</p>
             <div class="post-status">
-                <p>{{ draw.like_count }} Curtida{{ draw.like_count|pluralize }}</p>
-                <p>|</p>
-                <p>{{ draw.comments.count }} Comentário{{ draw.comments.count|pluralize }}</p>
+                <div class="likes">
+                    <p class="like-count{{draw.id}}"> {{ draw.like_count }} </p>
+                    <p>Curtida{{ draw.like_count|pluralize }} | {{ draw.comments.count }} Comentário{{ draw.comments.count|pluralize }}</p>
+                </div>
             </div>
         </div>
 

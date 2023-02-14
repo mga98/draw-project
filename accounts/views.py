@@ -3,7 +3,7 @@ from itertools import chain
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from django.http import Http404, HttpResponseRedirect, JsonResponse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from django.utils.text import slugify
@@ -327,24 +327,21 @@ def follow_unfollow(request):
 
 @login_required
 def like_unlike(request):
-    if request.POST.get('action') == 'post':
-        result = ''
-        id = int(request.POST.get('postid'))
+    if request.method == 'POST':
+        id = request.POST.get('post_id')
         draw = get_object_or_404(Draw, id=id)
 
         if draw.like.filter(id=request.user.profile.id).exists():
             draw.like.remove(request.user.profile)
             draw.like_count -= 1
-            result = draw.like_count
             draw.save()
 
         else:
             draw.like.add(request.user.profile)
             draw.like_count += 1
-            result = draw.like_count
             draw.save()
 
-        return JsonResponse({'result': result, })
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 @login_required(login_url='accounts:liked_posts', redirect_field_name='next')

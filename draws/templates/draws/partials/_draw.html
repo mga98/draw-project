@@ -15,15 +15,19 @@
         <div class="draw-info">
             <div class="like-area">
                 {% if request.user.is_authenticated %}
-                    {% if request.user.profile in draw.like.all %}
-                        <button class="like-button" value="{{ draw.id }}" id="like-btn">
-                            <i class="fa fa-light fa-heart fa-2x"></i>
-                        </button>
-                    {% else %}
-                        <button class="like-button white" value="{{ draw.id }}" id="like-btn">
-                            <i class="fa fa-light fa-heart fa-2x"></i>
-                        </button>
-                    {% endif %}
+                    <form action="{% url 'accounts:like_unlike' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value={{ draw.id }}>
+                        {% if request.user.profile in draw.like.all %}
+                            <button type="submit" class="like-button" value="{{ draw.id }}" id="like-btn">
+                                <i class="fa fa-light fa-heart fa-2x"></i>
+                            </button>
+                        {% else %}
+                            <button type="submit" class="like-button white" value="{{ draw.id }}" id="like-btn">
+                                <i class="fa fa-light fa-heart fa-2x"></i>
+                            </button>
+                        {% endif %}
+                    </form>
                 {% endif %}
                 <p id="like_count">{{ draw.like_count }}</p>
                 <p>Curtida{{ draw.like_count|pluralize }}</p>
@@ -80,25 +84,6 @@
 </div>
 
 <script>
-    $(document).on('click', '#like-btn', function (e) {
-        e.preventDefault();
-    
-        $.ajax({
-        type: 'POST',
-        url: '{% url "accounts:like_unlike" %}',
-        data: {
-            postid: $('#like-btn').val(),
-            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-            action: 'post'
-        },
-        success: function (json) {
-            document.getElementById("like_count").innerHTML = json['result']
-        },
-        error: function (xhr, errmsg, err) {
-        }
-        });
-    })
-
     function my_scope() {
         const forms = document.querySelectorAll('.comment-delete');
       
@@ -116,5 +101,4 @@
       }
       
       my_scope();
-      
 </script>

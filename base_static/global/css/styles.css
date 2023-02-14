@@ -438,12 +438,40 @@ header {
     color: var(--color-gray-7)
 }
 
+.title-like {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .post-status {
+    display: flex;
+    align-items: center;
+}
+
+.post-status .likes {
     display: flex;
 }
 
-.post-status p {
-    margin-right: 1rem;
+.post-status .likes p {
+    margin-right: 0.3rem;
+}
+
+.like-form button {
+    padding: 0.5rem 1.5rem;
+    border: 0.1rem solid var(--color-secondary);
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    background-color: var(--color-secondary);
+    color: var(--color-gray-1);
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+}
+
+.like-form button:hover {
+    background-color: var(--color-gray-1);
+    color: var(--color-tertiary);
+    border: 0.1rem solid var(--color-secondary);
 }
 
 .recent-posts {
