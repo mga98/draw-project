@@ -34,7 +34,7 @@ class FeedTest(AccountsTestBase):
 
         url = reverse('accounts:feed')
         response = self.client.get(url, follow=True)
-        msg = 'Nenhum desenho recente'
+        msg = 'Você ainda não segue nenhum usuário'
 
         self.assertIn(msg, response.content.decode('utf-8'))
 
