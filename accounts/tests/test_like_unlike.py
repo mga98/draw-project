@@ -42,3 +42,11 @@ class LikeUnlikeTests(AccountsTestBase):
         text = '<p id="like_count">0</p>'
 
         self.assertIn(text, response.content.decode('utf-8'))
+
+    def test_like_unlike_returns_404_in_get_method(self):
+        self.make_draw_and_login()
+
+        url = reverse('accounts:like_unlike')
+        response = self.client.get(url)
+
+        self.assertEqual(response.status_code, 404)

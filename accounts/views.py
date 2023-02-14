@@ -343,6 +343,9 @@ def like_unlike(request):
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+    else:
+        raise Http404
+
 
 @login_required(login_url='accounts:liked_posts', redirect_field_name='next')
 def liked_posts(request):
