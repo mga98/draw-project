@@ -10,7 +10,7 @@ from .serializers import DrawSerializer
 def draws_api_list(request):
     draws = Draw.objects.filter(
         is_published=True,
-    ).order_by('-id')[:10]
+    ).order_by('-id')[:10].select_related('author').prefetch_related('like')
 
     serializer = DrawSerializer(instance=draws, many=True)
 
