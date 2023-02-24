@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 from draws.models import Draw
 from utils.django_forms import add_placeholder
+from accounts.validators import DrawValidator
 
 
 class DrawForm(forms.ModelForm):
@@ -21,37 +22,8 @@ class DrawForm(forms.ModelForm):
 
         fields = ('title', 'description', 'about', 'img')
 
-    prepopulated_fields = {  # noqa
-        'slug': ('title',)
-    }
-
     def clean(self, *args, **kwargs):
         super_clean = super().clean(*args, **kwargs)
-
-        cleaned_data = self.cleaned_data
-        title = cleaned_data.get('title')
-        description = cleaned_data.get('description')
-        about = cleaned_data.get('about')
-
-        if len(title) < 5:
-            self._my_errors['title'].append(
-                'O título deve ter pelo menos 5 caracteres!'
-            )
-
-        if len(about) < 5:
-            self._my_errors['about'].append(
-                'Sobre precisa ter mais de 5 caracteres!'
-            )
-
-        if title == description:
-            self._my_errors['title'].append(
-                'O título deve ser diferente da descrição!'
-            )
-            self._my_errors['description'].append(
-                'A descrição deve ser diferente do título!'
-            )
-
-        if self._my_errors:
-            raise ValidationError(self._my_errors)
+        DrawValidator(self.cleaned_data, ErrorClass=ValidationError)
 
         return super_clean

@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
-from django.utils.text import slugify
 
 from accounts.models import Profile
 from draws.models import Draw, DrawComment
@@ -177,7 +176,6 @@ def my_draws_create(request):
 
         draw.author = request.user
         draw.is_published = False
-        draw.slug = slugify(draw.title, allow_unicode=True)
 
         draw.save()
 

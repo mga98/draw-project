@@ -1,7 +1,10 @@
 import os
+import string
 
+from random import SystemRandom
 from django.conf import settings
 from django.db import models
+from django.utils.text import slugify
 from django.contrib.auth.models import User
 from PIL import Image
 
@@ -51,6 +54,17 @@ class Draw(models.Model):
         )
 
     def save(self, *args, **kwargs):
+        if not self.slug:
+            slug = f'{slugify(self.title)}'
+            self.slug = slug
+            rand_letters = ''.join(
+                SystemRandom().choices(
+                    string.ascii_letters + string.digits,
+                    k=5,
+                )
+            )
+            self.slug = slugify(f'{self.title}-{rand_letters}')
+
         saved = super().save(*args, **kwargs)
 
         if self.img:

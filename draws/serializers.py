@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from accounts.models import Profile
+from accounts.validators import DrawValidator
 from .models import Draw
 
 
@@ -9,12 +9,16 @@ class DrawSerializer(serializers.ModelSerializer):
         model = Draw
         fields = [
             'id', 'title', 'description', 'is_published',
-            'author', 'liked_ids', 'like_count'
+            'author', 'about', 'img'
         ]
 
     author = serializers.StringRelatedField()
-    liked_ids = serializers.PrimaryKeyRelatedField(
-        source='like',
-        queryset=Profile.objects.all(),
-        many=True,
-    )
+
+    def validate(self, attrs):
+        super_validate = super().validate(attrs)
+        DrawValidator(
+            data=attrs,
+            ErrorClass=serializers.ValidationError,
+        )
+
+        return super_validate
