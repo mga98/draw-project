@@ -31,14 +31,34 @@ def draws_api_list(request):
         )
 
 
-@api_view()
+@api_view(http_method_names=['get', 'patch', 'delete'])
 def draws_api_detail(request, pk):
     draw = get_object_or_404(
-        Draw,
-        is_published=True,
-        pk=pk,
-    )
+            Draw,
+            is_published=True,
+            pk=pk,
+        )
 
-    serializer = DrawSerializer(instance=draw, many=False)
+    if request.method == 'GET':
+        serializer = DrawSerializer(instance=draw, many=False)
 
-    return Response(serializer.data)
+        return Response(serializer.data)
+
+    elif request.method == 'PATCH':
+        serializer = DrawSerializer(
+            instance=draw,
+            many=False,
+            data=request.data,
+            partial=True,
+        )
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        return Response(
+            serializer.data,
+        )
+
+    elif request.method == 'DELETE':
+        draw.delete()
+
+        return Response(status=status.HTTP_204_NO_CONTENT)

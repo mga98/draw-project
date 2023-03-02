@@ -9,12 +9,18 @@ class DrawSerializer(serializers.ModelSerializer):
         model = Draw
         fields = [
             'id', 'title', 'description', 'is_published',
-            'author', 'about', 'img'
+            'author', 'about'
         ]
 
     author = serializers.StringRelatedField()
 
     def validate(self, attrs):
+        if self.instance is not None and attrs.get('title') is None:
+            attrs['title'] = self.instance.title
+
+        if self.instance is not None and attrs.get('about') is None:
+            attrs['about'] = self.instance.about
+
         super_validate = super().validate(attrs)
         DrawValidator(
             data=attrs,
