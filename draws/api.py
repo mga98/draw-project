@@ -1,15 +1,15 @@
-from rest_framework.decorators import api_view
+
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 
 from .models import Draw
 from .serializers import DrawSerializer
 
 
-@api_view(http_method_names=['get', 'post'])
-def draws_api_list(request):
-    if request.method == 'GET':
+class DrawAPIv2List(APIView):
+    def get(self, request):
         draws = Draw.objects.filter(
             is_published=True,
         ).order_by('-id')[:10].select_related(
@@ -20,7 +20,7 @@ def draws_api_list(request):
 
         return Response(serializer.data)
 
-    elif request.method == 'POST':
+    def post(self, request):
         serializer = DrawSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
@@ -31,34 +31,42 @@ def draws_api_list(request):
         )
 
 
-@api_view(http_method_names=['get', 'patch', 'delete'])
-def draws_api_detail(request, pk):
-    draw = get_object_or_404(
+class DrawAPIv2Detail(APIView):
+    def get_draw(self, pk):
+        draw = get_object_or_404(
             Draw,
             is_published=True,
             pk=pk,
         )
 
-    if request.method == 'GET':
-        serializer = DrawSerializer(instance=draw, many=False)
+        return draw
 
-        return Response(serializer.data)
-
-    elif request.method == 'PATCH':
+    def get(self, request, pk):
+        draw = self.get_draw(pk)
         serializer = DrawSerializer(
             instance=draw,
             many=False,
+        )
+
+        return Response(serializer.data)
+
+    def patch(self, request, pk):
+        draw = self.get_draw(pk)
+        serializer = DrawSerializer(
+            instance=draw,
             data=request.data,
+            many=False,
             partial=True,
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response(
-            serializer.data,
-        )
+        return Response(serializer.data)
 
-    elif request.method == 'DELETE':
+    def delete(self, request, pk):
+        draw = self.get_draw(pk)
         draw.delete()
 
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        return Response(
+            status=status.HTTP_204_NO_CONTENT,
+        )
