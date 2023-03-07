@@ -1,34 +1,26 @@
-
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.views import APIView
+from rest_framework.generics import ListCreateAPIView
+from rest_framework.pagination import PageNumberPagination
 from django.shortcuts import get_object_or_404
 
 from .models import Draw
 from .serializers import DrawSerializer
 
 
-class DrawAPIv2List(APIView):
-    def get(self, request):
-        draws = Draw.objects.filter(
-            is_published=True,
-        ).order_by('-id')[:10].select_related(
-            'author'
-        ).prefetch_related('like')
+class DrawAPIv2Pagination(PageNumberPagination):
+    page_size = 10
 
-        serializer = DrawSerializer(instance=draws, many=True)
 
-        return Response(serializer.data)
-
-    def post(self, request):
-        serializer = DrawSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-
-        return Response(
-            serializer.data,
-            status=status.HTTP_201_CREATED
-        )
+class DrawAPIv2List(ListCreateAPIView):
+    queryset = Draw.objects.filter(
+        is_published=True
+    ).order_by('-id').select_related(
+        'author'
+    ).prefetch_related('like')
+    serializer_class = DrawSerializer
+    pagination_class = DrawAPIv2Pagination
 
 
 class DrawAPIv2Detail(APIView):
