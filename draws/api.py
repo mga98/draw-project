@@ -10,6 +10,9 @@ from .serializers import DrawSerializer
 
 
 class DrawAPIv2Pagination(PageNumberPagination):
+    """
+    Set the number of draws that are showed in a page
+    """
     page_size = 10
 
 
