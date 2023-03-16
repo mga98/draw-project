@@ -1,9 +1,15 @@
 from django.urls import path
+from rest_framework.routers import SimpleRouter
 
-from . import views
-from . import api
+from . import api, views
 
 app_name = 'draws'
+
+draw_api_v2_router = SimpleRouter()
+draw_api_v2_router.register(
+    'draws/api/v2',
+    viewset=api.DrawAPIv2ViewSet
+)
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -11,10 +17,6 @@ urlpatterns = [
     path('draws/all/', views.all_draws, name='all_draws'),
     path('draws/search/', views.DrawSearch.as_view(), name='draws_search'),
     path('draws/api/v1/', views.HomeViewApi.as_view(), name='draws_api_v1'),
-    path('draws/api/v2/', api.DrawAPIv2List.as_view(), name='draws_api_v2'),
-    path(
-        'draws/api/v2/<int:pk>/',
-        api.DrawAPIv2Detail.as_view(),
-        name='draws_api_v2_detail',
-    ),
 ]
+
+urlpatterns += draw_api_v2_router.urls
