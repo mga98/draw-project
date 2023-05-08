@@ -15,7 +15,7 @@ class DrawListViewBase(ListView):
     model = Draw
     context_object_name = 'draws'
     paginate_by = None
-    ordering = ['-id',]
+    ordering = ['-id']
     template_name = 'draws/pages/all_draws.html'
 
     def get_queryset(self, *args, **kwargs):

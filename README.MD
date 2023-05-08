@@ -54,12 +54,15 @@ git clone git@github.com:mga98/draw-project.git
 ```
 
 <h4> Configurando o projeto </h4>
+<p> Crie um arquivo .env na raiz do projeto com as mesmas constantes indicadas no arquivo.env-example e crie uma constante DEBUG = 1 dentro dele (como mostrado no arquivo .env-example).</p>
 <p> Abra o terminal com o ambiente virtual ativo e execute os seguintes comandos: </p>
 
 ```
 pip install -r requirements.txt
 python manage.py makemigrations
 python manage.py migrate
+python manage.py createsuperuser # Cria um super usuário
 pytest ou python manage.py test # Para executar os testes da aplicação
-python manage.py runserver
+python manage.py runserver # Inicializa o servidor na porta localhost/8000
+No navegador digite localhost:8000 para abrir a página
 ```
