@@ -26,6 +26,7 @@ class DrawAPIv2ViewSet(ModelViewSet):
     serializer_class = DrawSerializer
     pagination_class = DrawAPIv2Pagination
     permission_classes = [IsAuthenticatedOrReadOnly, ]
+    http_method_names = ['get', 'post', 'patch', 'delete', 'head', 'options']
 
     def get_object(self):
         pk = self.kwargs.get('pk')
